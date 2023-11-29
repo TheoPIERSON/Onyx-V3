@@ -4,7 +4,7 @@
     <div class="data-field">
       <label for="">Nom :</label>
       <input
-        name="lastName"
+        name="lastname"
         ngModel
         class="input-data"
         type="text"
@@ -15,7 +15,7 @@
     <div class="data-field">
       <label for="">Prenom :</label>
       <input
-        name="firstName"
+        name="firstname"
         ngModel
         class="input-data"
         type="text"
@@ -23,16 +23,6 @@
         placeholder="Prénom"
       />
     </div>
-    <input
-      class="input-btn"
-      [disabled]="addForm.invalid"
-      id="add-customer-btn"
-      type="submit"
-      value="Ajouter le client"
-    />
-  </div>
-
-  <div class="form-row">
     <div class="data-field">
       <label for="">Numéro de téléphone :</label>
       <input
@@ -44,11 +34,33 @@
         placeholder="06 07 08 09 10"
       />
     </div>
+  </div>
+
+  <div class="form-row">
+    <div class="data-field">
+      <label for="">Mail :</label>
+      <input
+        name="mail"
+        ngModel
+        class="input-data"
+        type="text"
+        required
+        placeholder="exemple@onyx.com"
+      />
+    </div>
     <div class="data-field">
       <label for="">Date de naissance :</label>
       <input name="birthDate" ngModel class="input-data" type="date" required />
     </div>
+  </div>
+  <div class="form-btn">
     <input
+      class="input-btn"
+      [disabled]="addForm.invalid"
+      id="add-customer-btn"
+      type="submit"
+      value="Ajouter le client"
+    /><input
       id="add-appointment-btn"
       class="input-btn"
       type="submit"
