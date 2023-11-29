@@ -1,0 +1,14 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  font-family: "Mirza", serif;
+}
+.searched-customer {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  background-color: #fde4f1;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}

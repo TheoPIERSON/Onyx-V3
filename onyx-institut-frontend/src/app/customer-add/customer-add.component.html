@@ -1,0 +1,58 @@
+<form #addForm="ngForm" (ngSubmit)="onAddCustomer(addForm)">
+  <h2>Nouveau client</h2>
+  <div class="form-row">
+    <div class="data-field">
+      <label for="">Nom :</label>
+      <input
+        name="lastName"
+        ngModel
+        class="input-data"
+        type="text"
+        required
+        placeholder="Nom"
+      />
+    </div>
+    <div class="data-field">
+      <label for="">Prenom :</label>
+      <input
+        name="firstName"
+        ngModel
+        class="input-data"
+        type="text"
+        required
+        placeholder="Prénom"
+      />
+    </div>
+    <input
+      class="input-btn"
+      [disabled]="addForm.invalid"
+      id="add-customer-btn"
+      type="submit"
+      value="Ajouter le client"
+    />
+  </div>
+
+  <div class="form-row">
+    <div class="data-field">
+      <label for="">Numéro de téléphone :</label>
+      <input
+        name="phoneNumer"
+        ngModel
+        class="input-data"
+        type="text"
+        required
+        placeholder="06 07 08 09 10"
+      />
+    </div>
+    <div class="data-field">
+      <label for="">Date de naissance :</label>
+      <input name="birthDate" ngModel class="input-data" type="date" required />
+    </div>
+    <input
+      id="add-appointment-btn"
+      class="input-btn"
+      type="submit"
+      value="Ajouter le client et un rdv"
+    />
+  </div>
+</form>
