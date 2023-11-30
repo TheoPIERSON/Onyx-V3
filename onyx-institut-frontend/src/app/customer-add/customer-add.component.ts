@@ -27,11 +27,11 @@ export class CustomerAddComponent {
       (response: Customers) => {
         console.log(response);
         addForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        addForm.reset();
       }
-      // (error: HttpErrorResponse) => {
-      //   alert(error.message);
-      //   addForm.reset();
-      // }
     );
   }
 }
