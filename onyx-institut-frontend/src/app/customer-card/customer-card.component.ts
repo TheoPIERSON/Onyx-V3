@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Customers } from '../customer';
 import { CustomerService } from '../services/customer.service';
-import { MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
@@ -13,7 +13,10 @@ import { ModalComponent } from '../modal/modal.component';
 export class CustomerCardComponent implements OnInit {
   public customers: Customers[] = [];
 
-  constructor(private customerService: CustomerService) {}
+  constructor(
+    private customerService: CustomerService,
+    public matDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getCustomers();
@@ -45,10 +48,10 @@ export class CustomerCardComponent implements OnInit {
   openModal() {
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
-    dialogConfig.disableClose = true;
+    dialogConfig.closeOnNavigation = true;
     dialogConfig.id = 'modal-component';
-    dialogConfig.height = '350px';
-    dialogConfig.width = '600px';
+    dialogConfig.height = '15rem';
+    dialogConfig.width = '20rem';
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
   }
