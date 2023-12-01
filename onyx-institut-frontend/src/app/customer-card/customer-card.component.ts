@@ -33,25 +33,13 @@ export class CustomerCardComponent implements OnInit {
     );
   }
 
-  // public updateCustomer(customers: Customers): void {
-  //   this.customerService.updateCustomer(customers).subscribe(
-  //     (response: Customers) => {
-  //       console.log(response);
-  //       this.getCustomers();
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //     }
-  //   );
-  // }
-
   openModal() {
     const dialogConfig = new MatDialogConfig();
-    // The user can't close the dialog by clicking outside its body
-    dialogConfig.closeOnNavigation = true;
     dialogConfig.id = 'modal-component';
-    dialogConfig.height = '15rem';
-    dialogConfig.width = '20rem';
+
+    // Activer le backdrop (fond de la modale) cliquable
+    dialogConfig.hasBackdrop = true;
+
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
   }

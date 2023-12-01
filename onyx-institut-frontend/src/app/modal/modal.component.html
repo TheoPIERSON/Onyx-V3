@@ -1,13 +1,77 @@
 <div id="modal-content-wrapper">
-  <header id="modal-header">
-    <h1 id="modal-title">Are you sure you want to logout?</h1>
-  </header>
-  <section id="modal-body">
-    <p>
-      If you logout bad things might happen, but don't mind me, I'm just the
-      description in a modal...
-    </p>
-  </section>
+  <form #editForm="ngForm" (ngSubmit)="onUpdateCustomer(editForm)">
+    <div class="form-row">
+      <div class="data-field">
+        <label for="">Nom :</label>
+        <input
+          name="lastname"
+          ngModel
+          class="input-data"
+          type="text"
+          required
+          placeholder="Nom"
+        />
+      </div>
+      <div class="data-field">
+        <label for="">Prenom :</label>
+        <input
+          name="firstname"
+          ngModel
+          class="input-data"
+          type="text"
+          required
+          placeholder="Prénom"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="data-field">
+        <label for="">Mail :</label>
+        <input
+          name="mail"
+          ngModel
+          class="input-data"
+          type="text"
+          required
+          placeholder="exemple@onyx.com"
+        />
+      </div>
+      <div class="data-field">
+        <label for="">Date de naissance :</label>
+        <input
+          name="birthdate"
+          ngModel
+          class="input-data"
+          type="date"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-row-inline">
+      <div class="data-field">
+        <label for="">Numéro de téléphone :</label>
+        <input
+          name="phoneNumber"
+          ngModel
+          class="input-data"
+          type="text"
+          required
+          placeholder="06 07 08 09 10"
+        />
+      </div>
+    </div>
+    <div class="form-btn">
+      <input
+        class="input-btn"
+        [disabled]="editForm.invalid"
+        id="add-customer-btn"
+        type="submit"
+        value="Sauvegarder"
+      />
+    </div>
+  </form>
+
   <!-- <footer id="modal-footer">
     <button
       mat-raised-button

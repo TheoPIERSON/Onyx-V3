@@ -29,4 +29,12 @@ public class CustomersController {
             Customers newCustomer = customersService.addCustomer(customer);
             return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<Customers> updateCustomer(@RequestBody Customers customer){
+        Customers updateCustomer = customersService.updateCustomer(customer);
+        return new ResponseEntity<>(updateCustomer, HttpStatus.OK);
+    }
+
+
 }
