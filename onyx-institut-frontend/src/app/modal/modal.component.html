@@ -1,25 +1,28 @@
 <div id="modal-content-wrapper">
-  <form #editForm="ngForm" (ngSubmit)="onUpdateCustomer(editForm)">
+  <form #editForm="ngForm" (ngSubmit)="onUpdateCustomer()">
     <div class="form-row">
       <div class="data-field">
+        <input
+          name="id_customer"
+          [(ngModel)]="selectedCustomer.id_customer"
+          type="hidden"
+        />
         <label for="">Nom :</label>
         <input
           name="lastname"
-          ngModel
+          [(ngModel)]="selectedCustomer.lastname"
           class="input-data"
           type="text"
-          required
           placeholder="Nom"
         />
       </div>
       <div class="data-field">
-        <label for="">Prenom :</label>
+        <label for="">Prénom :</label>
         <input
           name="firstname"
-          ngModel
+          [(ngModel)]="selectedCustomer.firstname"
           class="input-data"
           type="text"
-          required
           placeholder="Prénom"
         />
       </div>
@@ -30,10 +33,9 @@
         <label for="">Mail :</label>
         <input
           name="mail"
-          ngModel
+          [(ngModel)]="selectedCustomer.mail"
           class="input-data"
           type="text"
-          required
           placeholder="exemple@onyx.com"
         />
       </div>
@@ -41,10 +43,9 @@
         <label for="">Date de naissance :</label>
         <input
           name="birthdate"
-          ngModel
+          [(ngModel)]="selectedCustomer.birthdate"
           class="input-data"
           type="date"
-          required
         />
       </div>
     </div>
@@ -53,10 +54,9 @@
         <label for="">Numéro de téléphone :</label>
         <input
           name="phoneNumber"
-          ngModel
+          [(ngModel)]="selectedCustomer.phoneNumber"
           class="input-data"
           type="text"
-          required
           placeholder="06 07 08 09 10"
         />
       </div>
@@ -64,24 +64,10 @@
     <div class="form-btn">
       <input
         class="input-btn"
-        [disabled]="editForm.invalid"
-        id="add-customer-btn"
+        id="edit-customer-btn"
         type="submit"
         value="Sauvegarder"
       />
     </div>
   </form>
-
-  <!-- <footer id="modal-footer">
-    <button
-      mat-raised-button
-      id="modal-action-button"
-      (click)="actionFunction()"
-    >
-      Logout
-    </button>
-    <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">
-      Go back
-    </button>
-  </footer> -->
 </div>

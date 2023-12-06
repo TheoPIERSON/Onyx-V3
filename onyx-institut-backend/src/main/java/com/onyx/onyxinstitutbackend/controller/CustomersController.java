@@ -28,13 +28,13 @@ public class CustomersController {
         public ResponseEntity<Customers> addCustomer(@RequestBody Customers customer){
             Customers newCustomer = customersService.addCustomer(customer);
             return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
-    }
+        }
 
-    @PutMapping("/update")
-    public ResponseEntity<Customers> updateCustomer(@RequestBody Customers customer){
-        Customers updateCustomer = customersService.updateCustomer(customer);
-        return new ResponseEntity<>(updateCustomer, HttpStatus.OK);
-    }
+        @PutMapping("/update/{id_customer}")
+        public ResponseEntity<Customers> updateCustomer(@RequestBody Customers customer){
+            Customers updateCustomer = customersService.updateCustomer(customer);
+            return new ResponseEntity<>(updateCustomer, HttpStatus.OK);
+        }
 
 
 }

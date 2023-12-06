@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Customers } from '../customer';
+import { Customers } from '../customerModel';
 import { CustomerService } from '../services/customer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';

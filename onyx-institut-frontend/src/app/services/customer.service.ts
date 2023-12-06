@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Customers } from '../customer';
+import { Customers } from '../customerModel';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -23,11 +23,17 @@ export class CustomerService {
     );
   }
 
+  // public updateCustomer(customer: Customers): Observable<Customers> {
+  //   return this.http.put<Customers>(
+  //     `${this.apiServerUrl}/customers/update`,
+  //     customer
+  //   );
+  // }
+
   public updateCustomer(customer: Customers): Observable<Customers> {
-    return this.http.put<Customers>(
-      `${this.apiServerUrl}/customers/update`,
-      customer
-    );
+    const url = `${this.apiServerUrl}/customers/update/${customer.id_customer}`;
+
+    return this.http.put<Customers>(url, customer);
   }
 
   public deleteCustomer(customerId: number): Observable<void> {

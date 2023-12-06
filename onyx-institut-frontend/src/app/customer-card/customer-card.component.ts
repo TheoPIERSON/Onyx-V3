@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Customers } from '../customer';
+import { Customers } from '../customerModel';
 import { CustomerService } from '../services/customer.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Customers } from '../customer';
+import { Customers } from '../customerModel';
 import { CustomerService } from '../services/customer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { Customer } from '../customerClass';
 
 @Component({
   selector: 'app-modal',
@@ -13,21 +14,27 @@ import { NgForm } from '@angular/forms';
 export class ModalComponent {
   public customers: Customers[] = [];
 
+  public selectedCustomer: Customer = new Customer({
+    id_customer: 0, // ou l'ID par défaut que vous préférez
+    firstname: '',
+    lastname: '',
+    phoneNumber: '',
+    mail: '',
+    birthdate: '',
+  });
+
   constructor(
     private customerService: CustomerService,
     public matDialog: MatDialog
   ) {}
 
-  public onUpdateCustomer(addForm: NgForm): void {
-    document.getElementById('add-customer-btn');
-    this.customerService.updateCustomer(addForm.value).subscribe(
+  public onUpdateCustomer(): void {
+    this.customerService.updateCustomer(this.selectedCustomer).subscribe(
       (response: Customers) => {
-        console.log(response);
-        addForm.reset();
+        console.log('Update successful:', response);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        addForm.reset();
       }
     );
   }
