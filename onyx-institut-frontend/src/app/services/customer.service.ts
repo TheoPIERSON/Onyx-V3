@@ -30,6 +30,12 @@ export class CustomerService {
   //   );
   // }
 
+  public findCustomerById(customer: Customers) {
+    return this.http.get<Customers[]>(
+      `${this.apiServerUrl}/customers/${customer.id_customer}`
+    );
+  }
+
   public updateCustomer(customer: Customers): Observable<Customers> {
     const url = `${this.apiServerUrl}/customers/update/${customer.id_customer}`;
 

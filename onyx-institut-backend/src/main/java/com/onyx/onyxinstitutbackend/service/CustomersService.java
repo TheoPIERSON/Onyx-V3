@@ -14,6 +14,10 @@ public class CustomersService {
         return customerRepository.findAll();
     }
 
+    public Customers findCustomerById(Long id){
+        return customerRepository.findCustomerById(id);
+    }
+
     public Customers addCustomer(Customers customer){
         return customerRepository.save(customer);
     }
