@@ -24,8 +24,8 @@ public class CustomersController {
         List<Customers> customers = (List<Customers>) customersService.getAllCustomers();
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
-    @GetMapping("/{id_customer}")
-    public ResponseEntity<Customers> getCustomerById (@PathVariable("id_customer") Long id_customer){
+    @GetMapping("/{id}")
+    public ResponseEntity<Customers> getCustomerById (@PathVariable("id") Long id_customer){
         Customers customers = customersService.findCustomerById(id_customer);
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
@@ -38,7 +38,7 @@ public class CustomersController {
         return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id_customer}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Customers> updateCustomer(@RequestBody Customers customer){
         Customers updateCustomer = customersService.updateCustomer(customer);
         return new ResponseEntity<>(updateCustomer, HttpStatus.OK);

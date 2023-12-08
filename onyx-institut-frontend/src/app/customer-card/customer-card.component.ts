@@ -4,6 +4,8 @@ import { Customers } from '../customerModel';
 import { CustomerService } from '../services/customer.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
+import { Customer } from '../customerClass';
+import { CustomerIdService } from '../services/customer-id.service';
 
 @Component({
   selector: 'app-customer-card',
@@ -12,9 +14,18 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class CustomerCardComponent implements OnInit {
   public customers: Customers[] = [];
+  selectedCustomer = new Customer({
+    id: 0, // ou l'ID par défaut que vous préférez
+    firstname: '',
+    lastname: '',
+    phoneNumber: '',
+    mail: '',
+    birthdate: '',
+  });
 
   constructor(
     private customerService: CustomerService,
+    private customerIdService: CustomerIdService,
     public matDialog: MatDialog
   ) {}
 
@@ -26,6 +37,7 @@ export class CustomerCardComponent implements OnInit {
     this.customerService.getCustomers().subscribe(
       (response: Customers[]) => {
         this.customers = response;
+        console.log(this.customers);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -42,5 +54,21 @@ export class CustomerCardComponent implements OnInit {
 
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
+  }
+
+  onCardClick(id: number): void {
+    console.log('Customer ID to search:', id);
+
+    this.customerService.findCustomerById(id).subscribe(
+      (res: Customers) => {
+        this.selectedCustomer = res;
+        this.customerIdService.setSelectedCustomerId(id);
+
+        this.openModal(); // Ouvrez la modale avec les informations du client
+      },
+      (error: HttpErrorResponse) => {
+        console.error(error);
+      }
+    );
   }
 }

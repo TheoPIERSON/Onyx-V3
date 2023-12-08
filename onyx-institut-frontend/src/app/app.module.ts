@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
+import { CustomerIdService } from './services/customer-id.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { ModalComponent } from './modal/modal.component';
     MatButtonModule,
     MatDialogModule,
   ],
-  providers: [CustomerService],
+  providers: [CustomerService, CustomerIdService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,7 +1,7 @@
 import { Customers } from './customerModel';
 
 export class Customer implements Customers {
-  id_customer: number;
+  id: number;
   firstname: string;
   lastname: string;
   phoneNumber: string;
@@ -10,7 +10,7 @@ export class Customer implements Customers {
 
   // Ajoutez un constructeur si nécessaire
   constructor(customerData: Customers) {
-    this.id_customer = customerData.id_customer;
+    this.id = customerData.id;
     this.firstname = customerData.firstname;
     this.lastname = customerData.lastname;
     this.phoneNumber = customerData.phoneNumber;
