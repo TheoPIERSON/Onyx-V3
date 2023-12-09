@@ -18,7 +18,7 @@ export class ModalComponent implements OnInit {
   id: any;
   data: any;
   selectedCustomer = new Customer({
-    id: 0, // ou l'ID par défaut que vous préférez
+    id: this.customerIdService.getSelectedCustomerId(),
     firstname: '',
     lastname: '',
     phoneNumber: '',
@@ -29,21 +29,29 @@ export class ModalComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     public matDialog: MatDialog,
-    private route: ActivatedRoute,
     public customerIdService: CustomerIdService
   ) {}
 
   ngOnInit() {
     console.log('ID in modal:', this.customerIdService.getSelectedCustomerId());
-    // console.log(this.route.snapshot.params['customer.id']);
-    // this.id = this.route.snapshot.params['id'];
-    //this.getCustomer();
+    this.getCustomer();
+
+    console.log(this.selectedCustomer.id);
   }
 
   public getCustomer() {
-    this.customerService.findCustomerById(this.id).subscribe(
+    this.customerService.findCustomerById(this.selectedCustomer.id).subscribe(
       (res: Customers) => {
-        this.selectedCustomer = res;
+        // Assurez-vous que les propriétés que vous souhaitez utiliser sont définies
+        this.selectedCustomer.firstname = res.firstname;
+        this.selectedCustomer.lastname = res.lastname;
+        this.selectedCustomer.phoneNumber = res.phoneNumber;
+        this.selectedCustomer.mail = res.mail;
+        this.selectedCustomer.birthdate = res.birthdate;
+
+        // Vous pouvez également mettre à jour d'autres propriétés si nécessaire
+        console.log(this.selectedCustomer.firstname);
+        console.log(this.selectedCustomer.lastname);
       },
       (error: HttpErrorResponse) => {
         console.error(error);

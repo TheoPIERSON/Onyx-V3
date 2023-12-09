@@ -6,6 +6,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { Customer } from '../customerClass';
 import { CustomerIdService } from '../services/customer-id.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-customer-card',
@@ -48,10 +49,6 @@ export class CustomerCardComponent implements OnInit {
   openModal() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.id = 'modal-component';
-
-    // Activer le backdrop (fond de la modale) cliquable
-    dialogConfig.hasBackdrop = true;
-
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
   }
