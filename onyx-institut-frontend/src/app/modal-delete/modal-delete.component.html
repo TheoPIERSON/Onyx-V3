@@ -1,0 +1,24 @@
+<div id="modal-content-wrapper">
+  <form #editForm="ngForm" (ngSubmit)="onUpdateCustomer()">
+    <h1>
+      Vous vous apprétez a supprimer le client {{ selectedCustomer.firstname }}
+      {{ selectedCustomer.lastname }}
+    </h1>
+    <h2>Etes-vous sur de vouloir le supprimer ?</h2>
+    <div class="form-btn">
+      <input
+        class="input-btn"
+        id="edit-customer-btn"
+        type="submit"
+        value="OUI"
+      />
+
+      <input
+        class="input-btn"
+        id="edit-customer-btn"
+        type="submit"
+        value="NON"
+      />
+    </div>
+  </form>
+</div>

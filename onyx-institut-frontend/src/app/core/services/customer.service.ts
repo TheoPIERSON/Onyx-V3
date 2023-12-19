@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Customers } from '../customerModel';
+import { Customers } from '../../customerModel';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -39,9 +39,9 @@ export class CustomerService {
     return this.http.put<Customers>(url, customer);
   }
 
-  public deleteCustomer(customerId: number): Observable<void> {
+  public deleteCustomer(id: number): Observable<void> {
     return this.http.delete<void>(
-      `${this.apiServerUrl}/customers/delete/${customerId}`
+      `${this.apiServerUrl}/customers/delete/${id}`
     );
   }
 }
