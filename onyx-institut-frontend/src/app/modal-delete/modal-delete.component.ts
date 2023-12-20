@@ -45,6 +45,9 @@ export class ModalDeleteComponent {
         this.selectedCustomer.mail = res.mail;
         this.selectedCustomer.birthdate = res.birthdate;
 
+        console.log(this.selectedCustomer.firstname);
+        console.log(this.selectedCustomer.lastname);
+
         // Vous pouvez également mettre à jour d'autres propriétés si nécessaire
       },
       (error: HttpErrorResponse) => {
@@ -53,9 +56,10 @@ export class ModalDeleteComponent {
     );
   }
 
-  public onUpdateCustomer() {
+  public onDeleteCustomer() {
     this.customerService
       .deleteCustomer(this.selectedCustomer.id)
       .subscribe((res) => {});
+    console.log('customer deleted');
   }
 }

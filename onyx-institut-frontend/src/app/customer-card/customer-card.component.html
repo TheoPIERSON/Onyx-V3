@@ -14,10 +14,11 @@
   <div>{{ customer.lastname }}</div>
   <div>{{ customer.phoneNumber }}</div>
   <div>Prochain rdv le :</div>
+  <button
+    class="delete-btn"
+    mat-raised-button
+    (click)="onDeleteCardClick(customer.id)"
+  >
+    X
+  </button>
 </div>
-
-<!-- Edit modal-->
-<div class="modal" id="updateCustomer" role="dialog"></div>
-
-<!-- Delete modal-->
-<div class="modal" id="deleteCustomer" role="dialog"></div>
