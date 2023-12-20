@@ -1,7 +1,6 @@
 package com.onyx.onyxinstitutbackend.controller;
 
-import com.onyx.onyxinstitutbackend.model.Appointments;
-import com.onyx.onyxinstitutbackend.model.Customers;
+import com.onyx.onyxinstitutbackend.model.Appointment;
 import com.onyx.onyxinstitutbackend.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +18,8 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Appointments>> getAllCustomers (){
-        List<Appointments> appointment = (List<Appointments>) appointmentService.getAllAppointments();
+    public ResponseEntity<List<Appointment>> getAllCustomers (){
+        List<Appointment> appointment = (List<Appointment>) appointmentService.getAllAppointments();
         return new ResponseEntity<>(appointment, HttpStatus.OK);
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Arrays;
 
 @SpringBootApplication
+
 public class OnyxInstitutBackendApplication {
 
 	public static void main(String[] args) {

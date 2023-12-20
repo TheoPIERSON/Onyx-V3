@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 
-public class Appointments {
+@Entity
+public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_appointment",nullable = false, updatable = false)
@@ -14,7 +15,13 @@ public class Appointments {
     @JoinColumn(name = "id_customer")
     private Customers customer;
 
-    public Appointments() {
+    public Appointment() {
+    }
+
+    public Appointment(Long id_appointment, Date appointment_date, Customers customer) {
+        this.id_appointment = id_appointment;
+        this.appointment_date = appointment_date;
+        this.customer = customer;
     }
 
     public Long getId_appointment() {
