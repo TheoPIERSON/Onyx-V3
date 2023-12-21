@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
 import { CustomerIdService } from './core/services/customer-id.service';
+import { AppointmentComponent } from './appointments-screen/appointment/appointment.component';
+import { AppointmentAddComponent } from './appointments-screen/appointment-add/appointment-add.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { CustomerIdService } from './core/services/customer-id.service';
     CustomerAddComponent,
     CustomerSearchListComponent,
     ModalComponent,
+    AppointmentComponent,
+    AppointmentAddComponent,
   ],
   imports: [
     BrowserModule,
