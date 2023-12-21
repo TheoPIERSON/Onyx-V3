@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerService } from './core/services/customer.service';
@@ -20,6 +20,7 @@ import { ModalComponent } from './modal/modal.component';
 import { CustomerIdService } from './core/services/customer-id.service';
 import { AppointmentComponent } from './appointments-screen/appointment/appointment.component';
 import { AppointmentAddComponent } from './appointments-screen/appointment-add/appointment-add.component';
+import { RouterLink, provideRouter } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,9 @@ import { AppointmentAddComponent } from './appointments-screen/appointment-add/a
     BrowserAnimationsModule,
     MatButtonModule,
     MatDialogModule,
+    RouterLink,
   ],
-  providers: [CustomerService, CustomerIdService],
+  providers: [CustomerService, CustomerIdService, provideRouter(routes)],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -2,7 +2,7 @@
   width: 16%;
   background-color: #fef4f9;
   position: fixed;
-  z-index: -1;
+  z-index: 0;
   height: 100%;
   overflow: auto;
   border-right: 1px solid #e4e4e4;
