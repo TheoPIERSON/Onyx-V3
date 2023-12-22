@@ -1,9 +1,9 @@
 <form>
-  #addForm="ngForm" (ngSubmit)="onAddCustomer(addForm)"
-  <h2>Nouveau client</h2>
+  <!-- #addForm="ngForm" (ngSubmit)="onAddCustomer(addForm)" -->
+  <h2>Nouveau rendez-vous</h2>
   <div class="form-row">
     <div class="data-field">
-      <label for="">Nom :</label>
+      <label for="">Nom de la cliente :</label>
       <input
         name="lastname"
         ngModel
@@ -14,18 +14,18 @@
       />
     </div>
     <div class="data-field">
-      <label for="">Prenom :</label>
-      <input
-        name="firstname"
-        ngModel
-        class="input-data"
-        type="text"
-        required
-        placeholder="Prénom"
-      />
+      <label for="">Type de rdv :</label>
+      <select name="rdv_type" id="type_select" ngModel class="input-data">
+        <option value="Semi permanent mains">Semi permanent mains</option>
+        <option value="Dépose + Pose semi">Dépose + Pose semi</option>
+        <option value="Dépose + Manucure">Dépose + Manucure</option>
+        <option value="Gainage + Semi">Gainage + Semi</option>
+        <option value="Remplissage Gainage">Remplissage Gainage</option>
+        <option value="Manucure">Manucure</option>
+      </select>
     </div>
     <div class="data-field">
-      <label for="">Numéro de téléphone :</label>
+      <label for="">Temps de prestation :</label>
       <input
         name="phoneNumber"
         ngModel
@@ -39,7 +39,7 @@
 
   <div class="form-row">
     <div class="data-field">
-      <label for="">Mail :</label>
+      <label for="">Date du rendez-vous :</label>
       <input
         name="mail"
         ngModel
@@ -49,13 +49,9 @@
         placeholder="exemple@onyx.com"
       />
     </div>
-    <div class="data-field">
-      <label for="">Date de naissance :</label>
-      <input name="birthdate" ngModel class="input-data" type="date" required />
-    </div>
   </div>
   <div class="form-btn">
-    [disabled]="addForm.invalid"
+    <!-- [disabled]="addForm.invalid" -->
     <input
       class="input-btn"
       id="add-customer-btn"
