@@ -21,6 +21,9 @@ import { CustomerIdService } from './core/services/customer-id.service';
 import { AppointmentComponent } from './appointments-screen/appointment/appointment.component';
 import { AppointmentAddComponent } from './appointments-screen/appointment-add/appointment-add.component';
 import { RouterLink, provideRouter } from '@angular/router';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { AppointmentCalendarComponent } from './appointments-screen/appointment-calendar/appointment-calendar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { RouterLink, provideRouter } from '@angular/router';
     ModalComponent,
     AppointmentComponent,
     AppointmentAddComponent,
+    AppointmentCalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,7 @@ import { RouterLink, provideRouter } from '@angular/router';
     MatButtonModule,
     MatDialogModule,
     RouterLink,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   providers: [CustomerService, CustomerIdService, provideRouter(routes)],
   bootstrap: [AppComponent],
