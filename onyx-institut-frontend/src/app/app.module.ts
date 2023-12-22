@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Inject, Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule, routes } from './app-routing.module';
@@ -21,9 +21,35 @@ import { CustomerIdService } from './core/services/customer-id.service';
 import { AppointmentComponent } from './appointments-screen/appointment/appointment.component';
 import { AppointmentAddComponent } from './appointments-screen/appointment-add/appointment-add.component';
 import { RouterLink, provideRouter } from '@angular/router';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
+import {
+  CalendarDateFormatter,
+  CalendarModule,
+  CalendarNativeDateFormatter,
+  DateAdapter,
+  DateFormatterParams,
+} from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { AppointmentCalendarComponent } from './appointments-screen/appointment-calendar/appointment-calendar.component';
+
+import localeFr from '@angular/common/locales/fr';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeFr, 'fr');
+
+class CustomeDateFormatter extends CalendarNativeDateFormatter {
+  public override dayViewHour({ date, locale }: DateFormatterParams): string {
+    return new Intl.DateTimeFormat(locale, {
+      hour: 'numeric',
+      minute: 'numeric',
+    }).format(date);
+  }
+  public override weekViewHour({ date, locale }: DateFormatterParams): string {
+    return new Intl.DateTimeFormat(locale, {
+      hour: 'numeric',
+      minute: 'numeric',
+    }).format(date);
+  }
+}
 
 @NgModule({
   declarations: [
@@ -48,9 +74,17 @@ import { AppointmentCalendarComponent } from './appointments-screen/appointment-
     MatButtonModule,
     MatDialogModule,
     RouterLink,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
-  providers: [CustomerService, CustomerIdService, provideRouter(routes)],
+  providers: [
+    CustomerService,
+    CustomerIdService,
+    provideRouter(routes),
+    [{ provide: CalendarDateFormatter, useClass: CustomeDateFormatter }],
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

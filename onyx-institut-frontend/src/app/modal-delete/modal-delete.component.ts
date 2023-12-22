@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
 import { Customer } from 'src/app/customerClass';
-import { Customers } from 'src/app/customerModel';
+import { Customers } from 'src/app/Models/customerModel';
 
 @Component({
   selector: 'app-modal-delete',

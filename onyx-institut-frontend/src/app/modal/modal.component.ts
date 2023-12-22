@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Customers } from '../customerModel';
+import { Customers } from '../Models/customerModel';
 import { CustomerService } from '../core/services/customer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';

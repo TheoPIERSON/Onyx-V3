@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { isSameDay, isSameMonth } from 'date-fns';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-appointment-calendar',
@@ -16,11 +17,18 @@ export class AppointmentCalendarComponent {
 
   activeDayIsOpen = false;
 
+  refresh = new Subject<void>();
+
   constructor() {
     const event1 = {
       title: 'cours',
-      start: new Date('2023-12-22T10:30'),
-      end: new Date('2023-12-22T17:30'),
+      start: new Date('2023-12-22T16:00'),
+      end: new Date('2023-12-22T17:00'),
+      draggable: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
     };
     this.events.push(event1);
   }
@@ -44,5 +52,11 @@ export class AppointmentCalendarComponent {
   }
   eventClicked(event: any) {
     console.log(event);
+  }
+
+  eventTimesChanged(event: any) {
+    event.event.start = event.newStart;
+    event.event.end = event.newEnd;
+    this.refresh.next();
   }
 }
