@@ -6,7 +6,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { Customer } from '../customerClass';
 import { CustomerIdService } from '../core/services/customer-id.service';
-import { first } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
 
 @Component({
@@ -14,8 +14,9 @@ import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
   templateUrl: './customer-card.component.html',
   styleUrls: ['./customer-card.component.css'],
 })
-export class CustomerCardComponent implements OnInit {
+export class CustomerCardComponent {
   public customers: Customers[] = [];
+
   selectedCustomer = new Customer({
     id: 0, // ou l'ID par défaut que vous préférez
     firstname: '',
@@ -25,27 +26,13 @@ export class CustomerCardComponent implements OnInit {
     birthdate: '',
   });
 
+  customers$: Observable<Customers[]> = this.customerService.getCustomers();
+
   constructor(
     private customerService: CustomerService,
     private customerIdService: CustomerIdService,
     public matDialog: MatDialog
   ) {}
-
-  ngOnInit(): void {
-    this.getCustomers();
-  }
-
-  public getCustomers(): void {
-    this.customerService.getCustomers().subscribe(
-      (response: Customers[]) => {
-        this.customers = response;
-        console.log(this.customers);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
 
   openModal() {
     const dialogConfig = new MatDialogConfig();
