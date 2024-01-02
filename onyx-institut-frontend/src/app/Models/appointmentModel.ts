@@ -1,4 +1,8 @@
+import { Customers } from './customerModel';
+
 export interface Appointment {
   id: number;
-  appointment_date: Date;
+  appointmentStartDate: Date;
+  appointmentEndDate: Date;
+  customer: Customers;
 }

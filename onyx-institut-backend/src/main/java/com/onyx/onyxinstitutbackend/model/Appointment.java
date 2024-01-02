@@ -3,14 +3,18 @@ package com.onyx.onyxinstitutbackend.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_appointment",nullable = false, updatable = false)
+    @Column(name = "id_appointment", nullable = false, updatable = false)
     private Long id_appointment;
-    private Date appointment_date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp appointmentStartDate;
+    private Timestamp appointmentEndDate; // Nouvel attribut pour la date de fin
+
     @ManyToOne
     @JoinColumn(name = "id_customer")
     private Customers customer;
@@ -18,9 +22,10 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(Long id_appointment, Date appointment_date, Customers customer) {
+    public Appointment(Long id_appointment, Timestamp appointmentStartDate, Timestamp appointmentEndDate, Customers customer) {
         this.id_appointment = id_appointment;
-        this.appointment_date = appointment_date;
+        this.appointmentStartDate = appointmentStartDate;
+        this.appointmentEndDate = appointmentEndDate;
         this.customer = customer;
     }
 
@@ -32,12 +37,20 @@ public class Appointment {
         this.id_appointment = id_appointment;
     }
 
-    public Date getAppointment_date() {
-        return appointment_date;
+    public Timestamp getAppointmentStartDate() {
+        return appointmentStartDate;
     }
 
-    public void setAppointment_date(Date appointment_date) {
-        this.appointment_date = appointment_date;
+    public void setAppointmentStartDate(Timestamp appointmentStartDate) {
+        this.appointmentStartDate = appointmentStartDate;
+    }
+
+    public Timestamp getAppointmentEndDate() {
+        return appointmentEndDate;
+    }
+
+    public void setAppointmentEndDate(Timestamp appointmentEndDate) {
+        this.appointmentEndDate = appointmentEndDate;
     }
 
     public Customers getCustomer() {
@@ -48,3 +61,5 @@ public class Appointment {
         this.customer = customer;
     }
 }
+
+

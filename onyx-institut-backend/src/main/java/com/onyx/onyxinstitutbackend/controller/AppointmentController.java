@@ -18,7 +18,7 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Appointment>> getAllCustomers (){
+    public ResponseEntity<List<Appointment>> getAllAppointments (){
         List<Appointment> appointment = (List<Appointment>) appointmentService.getAllAppointments();
         return new ResponseEntity<>(appointment, HttpStatus.OK);
     }

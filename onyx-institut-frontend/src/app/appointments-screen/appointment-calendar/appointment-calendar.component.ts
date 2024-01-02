@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { isSameDay, isSameMonth } from 'date-fns';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { Appointment } from 'src/app/Models/appointmentModel';
+import { AppointmentService } from 'src/app/core/services/AppointmentService/appointment.service';
 
 @Component({
   selector: 'app-appointment-calendar',
@@ -13,24 +15,36 @@ export class AppointmentCalendarComponent {
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
 
-  events: CalendarEvent[] = [];
+  Appointments: Appointment[] = [];
+  event: CalendarEvent[] = [];
 
   activeDayIsOpen = false;
 
   refresh = new Subject<void>();
 
-  constructor() {
-    const event1 = {
-      title: 'cours',
-      start: new Date('2023-12-22T16:00'),
-      end: new Date('2023-12-22T17:00'),
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-    };
-    this.events.push(event1);
+  appointment$: Observable<Appointment[]> =
+    this.appointmentService.getAppointments();
+
+  constructor(private appointmentService: AppointmentService) {
+    this.appointment$.subscribe((appointments) => {
+      this.Appointments = appointments;
+      this.mapAppointmentsToCalendarEvents();
+    });
+  }
+
+  private mapAppointmentsToCalendarEvents(): void {
+    this.event = this.Appointments.map((appointment) => {
+      return {
+        title:
+          'Mme ' +
+          appointment.customer.lastname +
+          ' ' +
+          appointment.customer.firstname, // Vous pouvez personnaliser le titre
+        start: new Date(appointment.appointmentStartDate),
+        end: new Date(appointment.appointmentEndDate),
+        // Autres propriétés du CalendarEvent si nécessaire
+      };
+    });
   }
 
   setView(view: CalendarView) {
