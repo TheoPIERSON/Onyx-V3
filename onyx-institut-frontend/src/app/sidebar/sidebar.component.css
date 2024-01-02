@@ -42,3 +42,22 @@ li {
   border-bottom: 1px solid #e4e4e4;
   width: 85%;
 }
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: black;
+  width: 10rem;
+}
+
+.button:hover {
+  background-color: #ffe3f1;
+  border-radius: 10px;
+}
+.active-link {
+  background-color: #ffc7e3;
+  border-radius: 10px;
+}
