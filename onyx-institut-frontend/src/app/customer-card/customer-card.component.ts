@@ -6,8 +6,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { Customer } from '../customerClass';
 import { CustomerIdService } from '../core/services/customer-id.service';
-import { Observable, first } from 'rxjs';
+import { Observable, combineLatest, first, map, startWith } from 'rxjs';
 import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-card',
@@ -16,6 +17,12 @@ import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
 })
 export class CustomerCardComponent {
   public customers: Customers[] = [];
+
+  search = this.fb.nonNullable.group({
+    firstname: [''],
+    lastname: [''],
+    phoneNumber: [''],
+  });
 
   selectedCustomer = new Customer({
     id: 0, // ou l'ID par défaut que vous préférez
@@ -26,12 +33,13 @@ export class CustomerCardComponent {
     birthdate: '',
   });
 
-  customers$: Observable<Customers[]> = this.customerService.getCustomers();
+  customers$: Observable<Customers[]> = this.getCustomers();
 
   constructor(
     private customerService: CustomerService,
     private customerIdService: CustomerIdService,
-    public matDialog: MatDialog
+    public matDialog: MatDialog,
+    private fb: FormBuilder
   ) {}
 
   openModal() {
@@ -73,6 +81,35 @@ export class CustomerCardComponent {
       (error: HttpErrorResponse) => {
         console.error(error);
       }
+    );
+  }
+
+  private getCustomers(): Observable<Customer[]> {
+    const customers$ = this.customerService.fetchCustomers();
+
+    const search$ = combineLatest([
+      this.search.controls.firstname.valueChanges.pipe(startWith('')),
+      this.search.controls.lastname.valueChanges.pipe(startWith('')),
+      this.search.controls.phoneNumber.valueChanges.pipe(startWith('')),
+    ]);
+    return combineLatest([customers$, search$]).pipe(
+      map(([customers, [firstname, lastname, phoneNumber]]) =>
+        customers.filter((customer) => {
+          const isFirstnameMatching = customer.firstname
+            .toLowerCase()
+            .includes(firstname.toLowerCase());
+          const isLastnameMatching = customer.lastname
+            .toLowerCase()
+            .includes(lastname.toLowerCase());
+          const isPhoneNumberMatching = customer.phoneNumber
+            .toLowerCase()
+            .includes(phoneNumber.toLowerCase());
+
+          return (
+            isFirstnameMatching && isLastnameMatching && isPhoneNumberMatching
+          );
+        })
+      )
     );
   }
 }

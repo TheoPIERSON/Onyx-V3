@@ -7,11 +7,10 @@ import { CustomerComponent } from './customer/customer.component';
 import { CustomerService } from './core/services/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerCardComponent } from './customer-card/customer-card.component';
-import { CustomerSearchComponent } from './customer-search/customer-search.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
 import { CustomerSearchListComponent } from './customer-search-list/customer-search-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -58,7 +57,6 @@ class CustomeDateFormatter extends CalendarNativeDateFormatter {
     AppComponent,
     CustomerComponent,
     CustomerCardComponent,
-    CustomerSearchComponent,
     SidebarComponent,
     CustomerAddComponent,
     CustomerSearchListComponent,
@@ -81,7 +79,9 @@ class CustomeDateFormatter extends CalendarNativeDateFormatter {
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    ReactiveFormsModule,
   ],
+
   providers: [
     CustomerService,
     CustomerIdService,

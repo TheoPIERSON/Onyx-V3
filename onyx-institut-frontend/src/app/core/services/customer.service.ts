@@ -12,7 +12,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient) {}
 
-  public getCustomers(): Observable<Customers[]> {
+  public fetchCustomers(): Observable<Customers[]> {
     return this.http.get<Customers[]>(`${this.apiServerUrl}/customers/all`);
   }
 
