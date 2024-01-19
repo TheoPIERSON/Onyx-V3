@@ -15,4 +15,10 @@ export class AppointmentService {
   public getAppointments(): Observable<Appointment[]> {
     return this.http.get<Appointment[]>(`${this.apiServerUrl}/appointment/all`);
   }
+  public addAppointment(appointment: Appointment): Observable<Appointment> {
+    return this.http.post<Appointment>(
+      `${this.apiServerUrl}/appointment/add`,
+      appointment
+    );
+  }
 }

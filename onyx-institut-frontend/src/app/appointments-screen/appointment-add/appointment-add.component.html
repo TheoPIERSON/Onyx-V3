@@ -1,17 +1,16 @@
-<form>
-  <!-- #addForm="ngForm" (ngSubmit)="onAddCustomer(addForm)" -->
+<form #addForm="ngForm" (ngSubmit)="onAddAppointment(addForm)">
   <h2>Nouveau rendez-vous</h2>
   <div class="form-row">
     <div class="data-field">
       <label for="">Nom de la cliente :</label>
-      <input
-        name="lastname"
-        ngModel
-        class="input-data"
-        type="text"
-        required
-        placeholder="Nom"
-      />
+      <select name="customer-name" id="" ngModel class="input-data">
+        <option
+          *ngFor="let customer of customers$ | async"
+          [value]="customer.lastname"
+        >
+          {{ customer.lastname }} {{ customer.firstname }}
+        </option>
+      </select>
     </div>
     <div class="data-field">
       <label for="">Type de rdv :</label>
@@ -26,14 +25,14 @@
     </div>
     <div class="data-field">
       <label for="">Temps de prestation :</label>
-      <input
-        name="phoneNumber"
-        ngModel
-        class="input-data"
-        type="text"
-        required
-        placeholder="06 07 08 09 10"
-      />
+      <select name="rdv_type" id="type_select" ngModel class="input-data">
+        <option value="10 min">10</option>
+        <option value="20 min">20</option>
+        <option value="30 min">30</option>
+        <option value="40 min">40</option>
+        <option value="50 min">50</option>
+        <option value="60 min">60</option>
+      </select>
     </div>
   </div>
 
@@ -44,7 +43,7 @@
         name="mail"
         ngModel
         class="input-data"
-        type="text"
+        type="datetime-local"
         required
         placeholder="exemple@onyx.com"
       />
@@ -54,14 +53,9 @@
     <!-- [disabled]="addForm.invalid" -->
     <input
       class="input-btn"
-      id="add-customer-btn"
-      type="submit"
-      value="Ajouter le client"
-    /><input
       id="add-appointment-btn"
-      class="input-btn"
       type="submit"
-      value="Ajouter le client et un rdv"
+      value="Ajouter le rendez-vous"
     />
   </div>
 </form>

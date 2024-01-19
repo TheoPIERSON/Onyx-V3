@@ -11,7 +11,6 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_appointment", nullable = false, updatable = false)
     private Long id_appointment;
-    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp appointmentStartDate;
     private Timestamp appointmentEndDate; // Nouvel attribut pour la date de fin
 
