@@ -1,0 +1,60 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  font-family: "Mirza", serif;
+  background-color: #fef4f9;
+}
+
+form {
+  margin-left: 16%;
+  border-left: 0.5px solid #e4e4e4;
+}
+
+h2 {
+  font-weight: 500;
+  padding-left: 2rem;
+  padding-top: 1rem;
+}
+
+.input-data {
+  background-color: white;
+  border: 1px solid #e4e4e4;
+  border-radius: 15px;
+  display: inline-flex;
+  padding: 0.2rem;
+  font-size: 1rem;
+}
+
+.form-row {
+  margin-left: 3rem;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-bottom: 0.5rem;
+  justify-content: center;
+}
+.form-btn {
+  margin-left: 10rem;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+}
+#add-customer-btn {
+  background-color: #d0ecab;
+}
+#add-appointment-btn {
+  background-color: #fc62aa;
+  color: white;
+}
+.input-btn {
+  font-size: 1rem;
+  border-radius: 2rem;
+  border-style: none;
+  cursor: pointer;
+  width: 12rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  margin-left: 6rem;
+  margin-bottom: 0.5rem;
+}

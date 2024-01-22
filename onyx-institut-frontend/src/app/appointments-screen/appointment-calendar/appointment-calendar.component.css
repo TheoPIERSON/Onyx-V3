@@ -1,0 +1,10 @@
+#calendar-container {
+  margin-left: 13.5rem;
+  width: 100%;
+}
+#calendar-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
