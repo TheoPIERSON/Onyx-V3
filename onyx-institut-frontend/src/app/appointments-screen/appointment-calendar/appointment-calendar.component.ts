@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { isSameDay, isSameMonth } from 'date-fns';
 import { Observable, Subject } from 'rxjs';
-import { Appointment } from 'src/app/Models/appointmentModel';
+import { Appointments } from 'src/app/Models/appointmentModel';
 import { AppointmentService } from 'src/app/core/services/AppointmentService/appointment.service';
 
 @Component({
@@ -15,14 +15,14 @@ export class AppointmentCalendarComponent {
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
 
-  Appointments: Appointment[] = [];
+  Appointments: Appointments[] = [];
   event: CalendarEvent[] = [];
 
   activeDayIsOpen = false;
 
   refresh = new Subject<void>();
 
-  appointment$: Observable<Appointment[]> =
+  appointment$: Observable<Appointments[]> =
     this.appointmentService.getAppointments();
 
   constructor(private appointmentService: AppointmentService) {

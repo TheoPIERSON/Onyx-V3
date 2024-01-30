@@ -13,12 +13,6 @@ import { Observable } from 'rxjs';
 export class CustomerAddComponent {
   public customers: Customers[] = [];
 
-  myObservable = new Observable((observer) => {
-    observer.next('Salut !'); // Il raconte une partie de l'histoire
-    observer.next('Comment ça va ?'); // Il continue
-    observer.complete(); // Il signale qu'il a fini
-  });
-
   constructor(private customerService: CustomerService) {}
 
   public onAddCustomer(addForm: NgForm): void {

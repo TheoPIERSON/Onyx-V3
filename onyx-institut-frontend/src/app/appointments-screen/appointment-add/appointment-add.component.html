@@ -3,16 +3,30 @@
   <div class="form-row">
     <div class="data-field">
       <label for="">Nom de la cliente :</label>
-      <select name="customer-name" id="" ngModel class="input-data">
+      <select
+        name="customer-name"
+        id=""
+        [(ngModel)]="selectedCustomerId"
+        class="input-data"
+      >
         <option
           *ngFor="let customer of customers$ | async"
-          [value]="customer.lastname"
+          [value]="customer.id"
         >
           {{ customer.lastname }} {{ customer.firstname }}
         </option>
       </select>
     </div>
-    <div class="data-field">
+  </div>
+  <input
+    class="input-btn"
+    id="add-appointment-btn"
+    type="submit"
+    value="Ajouter le rendez-vous"
+  />
+</form>
+
+<!-- <div class="data-field">
       <label for="">Type de rdv :</label>
       <select name="rdv_type" id="type_select" ngModel class="input-data">
         <option value="Semi permanent mains">Semi permanent mains</option>
@@ -34,7 +48,7 @@
         <option value="60 min">60</option>
       </select>
     </div>
-  </div>
+  </div> 
 
   <div class="form-row">
     <div class="data-field">
@@ -49,13 +63,5 @@
       />
     </div>
   </div>
-  <div class="form-btn">
-    <!-- [disabled]="addForm.invalid" -->
-    <input
-      class="input-btn"
-      id="add-appointment-btn"
-      type="submit"
-      value="Ajouter le rendez-vous"
-    />
-  </div>
-</form>
+
+    />-->

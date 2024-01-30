@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Appointment } from 'src/app/Models/appointmentModel';
+import { Appointments } from 'src/app/Models/appointmentModel';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,11 +12,13 @@ export class AppointmentService {
 
   constructor(private http: HttpClient) {}
 
-  public getAppointments(): Observable<Appointment[]> {
-    return this.http.get<Appointment[]>(`${this.apiServerUrl}/appointment/all`);
+  public getAppointments(): Observable<Appointments[]> {
+    return this.http.get<Appointments[]>(
+      `${this.apiServerUrl}/appointment/all`
+    );
   }
-  public addAppointment(appointment: Appointment): Observable<Appointment> {
-    return this.http.post<Appointment>(
+  public addAppointment(appointment: Appointments): Observable<Appointments> {
+    return this.http.post<Appointments>(
       `${this.apiServerUrl}/appointment/add`,
       appointment
     );

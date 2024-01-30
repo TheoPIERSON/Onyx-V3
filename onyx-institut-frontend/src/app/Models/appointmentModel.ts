@@ -1,6 +1,6 @@
 import { Customers } from './customerModel';
 
-export interface Appointment {
+export interface Appointments {
   id: number;
   appointmentStartDate: Date;
   appointmentEndDate: Date;
