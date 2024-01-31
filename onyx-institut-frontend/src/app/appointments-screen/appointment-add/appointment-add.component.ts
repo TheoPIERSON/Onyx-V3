@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Appointments } from 'src/app/Models/appointmentModel';
 
@@ -19,16 +19,9 @@ export class AppointmentAddComponent {
   selectedStartDate: Date = new Date();
   selectedEndDate: Date = new Date();
 
-  search = this.fb.nonNullable.group({
-    firstname: '',
-    startDate: [null],
-    endDate: [null],
-  });
-
   constructor(
     private customerService: CustomerService,
-    private appointmentService: AppointmentService,
-    private fb: FormBuilder
+    private appointmentService: AppointmentService
   ) {}
 
   public onAddAppointment(addForm: NgForm): void {
