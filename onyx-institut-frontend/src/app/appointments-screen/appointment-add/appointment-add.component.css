@@ -40,9 +40,7 @@ h2 {
   grid-template-columns: 1fr 1fr;
   justify-content: center;
 }
-#add-customer-btn {
-  background-color: #d0ecab;
-}
+
 #add-appointment-btn {
   background-color: #fc62aa;
   color: white;

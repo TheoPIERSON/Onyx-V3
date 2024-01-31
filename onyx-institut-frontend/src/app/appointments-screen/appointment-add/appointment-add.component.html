@@ -2,7 +2,7 @@
   <h2>Nouveau rendez-vous</h2>
   <div class="form-row">
     <div class="data-field">
-      <label for="">Nom de la cliente :</label>
+      <label for="customer-name">Nom de la cliente :</label>
       <select
         name="customer-name"
         id=""
@@ -17,6 +17,26 @@
         </option>
       </select>
     </div>
+    <div class="data-field">
+      <label for="start-date">Date de debut</label>
+      <input
+        class="input-data"
+        type="datetime-local"
+        name="start-date"
+        id="start-date"
+        [(ngModel)]="selectedStartDate"
+      />
+    </div>
+    <div class="data-field">
+      <label for="end-date">Date de fin</label>
+      <input
+        class="input-data"
+        type="datetime-local"
+        name="end-date"
+        id="end-date"
+        [(ngModel)]="selectedEndDate"
+      />
+    </div>
   </div>
   <input
     class="input-btn"
@@ -25,43 +45,3 @@
     value="Ajouter le rendez-vous"
   />
 </form>
-
-<!-- <div class="data-field">
-      <label for="">Type de rdv :</label>
-      <select name="rdv_type" id="type_select" ngModel class="input-data">
-        <option value="Semi permanent mains">Semi permanent mains</option>
-        <option value="Dépose + Pose semi">Dépose + Pose semi</option>
-        <option value="Dépose + Manucure">Dépose + Manucure</option>
-        <option value="Gainage + Semi">Gainage + Semi</option>
-        <option value="Remplissage Gainage">Remplissage Gainage</option>
-        <option value="Manucure">Manucure</option>
-      </select>
-    </div>
-    <div class="data-field">
-      <label for="">Temps de prestation :</label>
-      <select name="rdv_type" id="type_select" ngModel class="input-data">
-        <option value="10 min">10</option>
-        <option value="20 min">20</option>
-        <option value="30 min">30</option>
-        <option value="40 min">40</option>
-        <option value="50 min">50</option>
-        <option value="60 min">60</option>
-      </select>
-    </div>
-  </div> 
-
-  <div class="form-row">
-    <div class="data-field">
-      <label for="">Date du rendez-vous :</label>
-      <input
-        name="mail"
-        ngModel
-        class="input-data"
-        type="datetime-local"
-        required
-        placeholder="exemple@onyx.com"
-      />
-    </div>
-  </div>
-
-    />-->

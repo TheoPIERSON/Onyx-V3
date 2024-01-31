@@ -10,6 +10,7 @@ import { CustomerCardComponent } from './customer-card/customer-card.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
 import { CustomerSearchListComponent } from './customer-search-list/customer-search-list.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -85,6 +86,7 @@ class CustomeDateFormatter extends CalendarNativeDateFormatter {
       useFactory: adapterFactory,
     }),
     ReactiveFormsModule,
+    NgSelectModule,
   ],
 
   providers: [
