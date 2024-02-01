@@ -1,21 +1,25 @@
-<form #addForm="ngForm" (ngSubmit)="onAddAppointment(addForm)">
+<form class="search-container" [formGroup]="search">
   <h2>Nouveau rendez-vous</h2>
   <div class="form-row">
     <div class="data-field">
       <label for="customer-name">Nom de la cliente :</label>
-      <select
-        name="customer-name"
-        id=""
-        [(ngModel)]="selectedCustomerId"
+      <input
         class="input-data"
-      >
-        <option
-          *ngFor="let customer of customers$ | async"
-          [value]="customer.id"
-        >
-          {{ customer.lastname }} {{ customer.firstname }}
-        </option>
-      </select>
+        type="text"
+        required
+        placeholder="Nom"
+        formControlName="lastname"
+      />
+    </div>
+    <div class="data-field">
+      <label for="">Prenom :</label>
+      <input
+        class="input-data"
+        type="text"
+        required
+        placeholder="Prénom"
+        formControlName="firstname"
+      />
     </div>
     <div class="data-field">
       <label for="start-date">Date de debut</label>
@@ -24,7 +28,7 @@
         type="datetime-local"
         name="start-date"
         id="start-date"
-        [(ngModel)]="selectedStartDate"
+        formControlName="startDate"
       />
     </div>
     <div class="data-field">
@@ -34,7 +38,7 @@
         type="datetime-local"
         name="end-date"
         id="end-date"
-        [(ngModel)]="selectedEndDate"
+        formControlName="endDate"
       />
     </div>
   </div>
@@ -43,5 +47,14 @@
     id="add-appointment-btn"
     type="submit"
     value="Ajouter le rendez-vous"
+    (click)="onAddAppointment()"
   />
 </form>
+<div
+  id="main-container"
+  class="searched-customer"
+  *ngFor="let customer of customers$ | async"
+  (click)="selectCustomer(customer)"
+>
+  <div>{{ customer.lastname }} {{ customer.firstname }}</div>
+</div>

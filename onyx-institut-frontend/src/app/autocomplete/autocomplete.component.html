@@ -1,0 +1,63 @@
+<div class="container">
+  <form class="search-container" [formGroup]="search">
+    <h2>Rechercher client par :</h2>
+    <div class="form-row">
+      <div class="data-field">
+        <label for="">Nom :</label>
+        <input
+          class="input-data"
+          type="text"
+          required
+          placeholder="Nom"
+          formControlName="lastname"
+        />
+      </div>
+      <div class="data-field">
+        <label for="">Prenom :</label>
+        <input
+          class="input-data"
+          type="text"
+          required
+          placeholder="Prénom"
+          formControlName="firstname"
+        />
+      </div>
+      <div class="data-field">
+        <label for="start-date">Date de debut</label>
+        <input
+          class="input-data"
+          type="datetime-local"
+          name="start-date"
+          id="start-date"
+          formControlName="startDate"
+        />
+      </div>
+      <div class="data-field">
+        <label for="end-date">Date de fin</label>
+        <input
+          class="input-data"
+          type="datetime-local"
+          name="end-date"
+          id="end-date"
+          formControlName="endDate"
+        />
+      </div>
+    </div>
+    <input
+      class="input-btn"
+      id="add-appointment-btn"
+      type="submit"
+      value="Ajouter le rendez-vous"
+      (click)="onAddAppointment()"
+    />
+  </form>
+
+  <div
+    id="main-container"
+    class="searched-customer"
+    *ngFor="let customer of customers$ | async"
+    (click)="selectCustomer(customer)"
+  >
+    <div>{{ customer.lastname }} {{ customer.firstname }}</div>
+  </div>
+</div>
