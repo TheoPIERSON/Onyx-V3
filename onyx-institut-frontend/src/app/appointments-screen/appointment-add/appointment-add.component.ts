@@ -67,13 +67,10 @@ export class AppointmentAddComponent {
   // Selectionne le customer dans le formulaire
   selectCustomer(customer: Customer): void {
     this.selectedCustomer = customer;
-    console.log(this.selectedCustomer);
     this.search.patchValue({
       firstname: customer.firstname,
       lastname: customer.lastname,
     });
-    console.log(this.selectedCustomer.id);
-    console.log('nouvelle date ' + this.search.value.endDate);
   }
 
   //Ajoute le nouvel appointment dans la base de données
@@ -81,11 +78,6 @@ export class AppointmentAddComponent {
     // Récupérer la date sélectionnée dans le formulaire
     const selectedStartDate: Date = this.search.value.startDate ?? new Date();
     const selectedEndDate: Date = this.search.value.endDate ?? new Date();
-
-    // Afficher la date dans la console
-    console.log('La date de début sélectionnée est :', selectedStartDate);
-    console.log('La date de fin sélectionnée est :', selectedEndDate);
-
     // Reste du code...
     const appointmentObj: Appointments = {
       id: 0,
@@ -100,14 +92,8 @@ export class AppointmentAddComponent {
         birthdate: this.selectedCustomer.birthdate,
       },
     };
-    console.log("l'id selectionné est : " + appointmentObj.customer.id);
-
-    console.log(appointmentObj.appointmentEndDate);
-
     this.appointmentService
       .addAppointment(appointmentObj)
-      .subscribe((response: Appointments) => {
-        console.log(response);
-      });
+      .subscribe((response: Appointments) => {});
   }
 }
