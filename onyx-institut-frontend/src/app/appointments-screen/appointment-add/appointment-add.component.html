@@ -51,12 +51,15 @@
     (click)="onAddAppointment()"
   />
 </form>
-<div
-  id="main-container"
-  class="searched-customer"
-  *ngFor="let customer of customers$ | async"
-  (click)="selectCustomer(customer)"
->
-  <div>{{ customer.lastname }} {{ customer.firstname }}</div>
+<div class="searched-customer">
+  <div
+    id="main-container"
+    *ngFor="let customer of customers$ | async"
+    (click)="selectCustomer(customer)"
+  >
+    <div class="search-list">
+      {{ customer.lastname }} {{ customer.firstname }}
+    </div>
+  </div>
 </div>
-<div class="searched-customer">theo Pierson</div>
+<!-- <div class="searched-customer">theo Pierson</div> -->
