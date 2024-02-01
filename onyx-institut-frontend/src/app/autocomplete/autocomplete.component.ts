@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { CustomerService } from '../core/services/customer.service';
+import { Customers } from '../Models/customerModel';
+import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, combineLatest, map } from 'rxjs';
-import { Appointments } from 'src/app/Models/appointmentModel';
-
-import { Customers } from 'src/app/Models/customerModel';
-import { AppointmentService } from 'src/app/core/services/AppointmentService/appointment.service';
-import { CustomerService } from 'src/app/core/services/customer.service';
-import { Customer } from 'src/app/customerClass';
+import { Customer } from '../customerClass';
+import { Appointments } from '../Models/appointmentModel';
+import { AppointmentService } from '../core/services/AppointmentService/appointment.service';
 
 @Component({
-  selector: 'app-appointment-add',
-  templateUrl: './appointment-add.component.html',
-  styleUrls: ['./appointment-add.component.css'],
+  selector: 'app-autocomplete',
+  templateUrl: './autocomplete.component.html',
+  styleUrls: ['./autocomplete.component.css'],
 })
-export class AppointmentAddComponent {
+export class AutocompleteComponent {
   // Recupère le form group du html
   search = this.fb.nonNullable.group({
     firstname: [''],
