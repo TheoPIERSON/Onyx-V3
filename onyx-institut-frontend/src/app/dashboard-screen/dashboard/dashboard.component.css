@@ -1,0 +1,45 @@
+.container {
+  margin-left: 16%;
+  font-family: "Mirza", serif;
+}
+.top-bar {
+  width: 100%;
+  padding: 3rem;
+  background-color: var(--main-bg-color);
+}
+h2 {
+  font-family: "Mirza", serif;
+}
+.card-title {
+  padding-bottom: 1rem;
+}
+.dashboard-raw {
+  display: flex;
+  justify-content: space-evenly;
+}
+.daily-appointment {
+  padding: 1rem;
+  background-color: var(--main-btn-color);
+  color: white;
+  width: 28rem;
+  margin-top: 1rem;
+  margin-left: 2.5rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 1.95px 1.95px 2.6px;
+}
+.daily-data {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 1rem;
+}
+.numbers {
+  display: flex;
+}
+h1 {
+  font-size: 5rem;
+}
+.arrow-icon {
+  color: greenyellow;
+  transform: scale(2);
+  padding: 0.5rem;
+}

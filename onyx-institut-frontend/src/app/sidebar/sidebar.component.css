@@ -1,7 +1,7 @@
 .sidebar {
   width: 16%;
-  background-color: #fef4f9;
-  position: fixed;
+  background-color: var(--main-bg-color);
+  position: absolute;
   z-index: 0;
   height: 100%;
   overflow: auto;
