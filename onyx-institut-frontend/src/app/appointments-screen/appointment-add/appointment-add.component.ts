@@ -95,5 +95,6 @@ export class AppointmentAddComponent {
     this.appointmentService
       .addAppointment(appointmentObj)
       .subscribe((response: Appointments) => {});
+    window.location.reload();
   }
 }

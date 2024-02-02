@@ -27,5 +27,6 @@ export class CustomerAddComponent {
         addForm.reset();
       }
     );
+    window.location.reload();
   }
 }

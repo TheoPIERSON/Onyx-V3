@@ -10,14 +10,22 @@
   padding: 0.5rem;
 }
 .calendar-btn {
-  border: none;
+  padding: 0.1rem;
+  border-radius: 5px;
+  border: 1px solid #fc62aa;
   margin-left: 0.5rem;
   background-color: transparent;
+}
+.calendar-btn:hover {
+  background-color: #ffe3f1;
 }
 #previous,
 #next {
   color: gray;
   font-size: larger;
+  border: none;
+  margin-left: 0.5rem;
+  background-color: transparent;
 }
 #previous:hover,
 #next:hover {

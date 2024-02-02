@@ -37,6 +37,8 @@ import { AppointmentCalendarComponent } from './appointments-screen/appointment-
 
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
+import { PrestationsComponent } from './prestations-screen/prestations/prestations.component';
+import { DashboardComponent } from './dashboard-screen/dashboard/dashboard.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -67,6 +69,8 @@ class CustomeDateFormatter extends CalendarNativeDateFormatter {
     AppointmentComponent,
     AppointmentAddComponent,
     AppointmentCalendarComponent,
+    PrestationsComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
