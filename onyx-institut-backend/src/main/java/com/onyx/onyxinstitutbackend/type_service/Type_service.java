@@ -16,22 +16,10 @@ public class Type_service {
     private int price;
     private int duration;
 
-    public Type_service(){}
-    public Type_service(Long id_type_service, String title, String description, int price, int duration) {
-        this.id_type_service = id_type_service;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.duration = duration;
-    }
+    public Long getId() {return id_type_service;}
 
-    public Long getId_type_service() {
-        return id_type_service;
-    }
-
-    public void setId_type_service(Long id_type_service) {
-        this.id_type_service = id_type_service;
-    }
+    public void setId(Long id) {
+        this.id_type_service = id;}
 
     public String getTitle() {
         return title;

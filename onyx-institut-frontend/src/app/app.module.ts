@@ -40,6 +40,7 @@ import { registerLocaleData } from '@angular/common';
 import { PrestationsComponent } from './prestations-screen/prestations/prestations.component';
 import { DashboardComponent } from './dashboard-screen/dashboard/dashboard.component';
 import { PrestationsAddComponent } from './prestations-screen/prestations-add/prestations-add.component';
+import { PrestationsCardComponent } from './prestations-screen/prestations-card/prestations-card.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -73,6 +74,7 @@ class CustomeDateFormatter extends CalendarNativeDateFormatter {
     PrestationsComponent,
     DashboardComponent,
     PrestationsAddComponent,
+    PrestationsCardComponent,
   ],
   imports: [
     BrowserModule,

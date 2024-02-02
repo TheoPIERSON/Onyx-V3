@@ -15,18 +15,18 @@ services:
     volumes:
       - onyx-psql-db-data:/var/lib/postgresql/data
 
-  onyx-frontend: # Nom du container du frontend
-    image: onyx-frontend-image
-    container_name: onyx-frontend
-    build:
-      context: ./onyx-institut-frontend
-      dockerfile: Dockerfile
-    ports:
-      - "4200:4200"
-    # volumes:
-    #   - onyx-frontend:/usr/local/app # Montage du code source local dans le conteneur
-    depends_on:
-      - onyx-psql-db
+  # onyx-frontend: # Nom du container du frontend
+  #   image: onyx-frontend-image
+  #   container_name: onyx-frontend
+  #   build:
+  #     context: ./onyx-institut-frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "4200:4200"
+  #   # volumes:
+  #   #   - onyx-frontend:/usr/local/app # Montage du code source local dans le conteneur
+  #   depends_on:
+  #     - onyx-psql-db
 
   onyx-backend:
     image: onyx-backend-image
