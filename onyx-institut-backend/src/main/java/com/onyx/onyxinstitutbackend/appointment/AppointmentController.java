@@ -1,8 +1,5 @@
-package com.onyx.onyxinstitutbackend.controller;
+package com.onyx.onyxinstitutbackend.appointment;
 
-import com.onyx.onyxinstitutbackend.model.Appointment;
-import com.onyx.onyxinstitutbackend.model.Customers;
-import com.onyx.onyxinstitutbackend.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

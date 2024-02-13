@@ -1,4 +1,4 @@
-<form #addForm="ngForm">
+<form #addForm="ngForm" (ngSubmit)="onAddCustomer(addForm)">
   <h2>Nouvelle prestation</h2>
   <div class="form-row">
     <div class="data-field">

@@ -1,6 +1,6 @@
-package com.onyx.onyxinstitutbackend.repository;
+package com.onyx.onyxinstitutbackend.customer;
 
-import com.onyx.onyxinstitutbackend.model.Customers;
+import com.onyx.onyxinstitutbackend.customer.Customers;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

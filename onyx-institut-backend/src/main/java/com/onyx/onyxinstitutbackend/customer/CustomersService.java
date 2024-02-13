@@ -1,7 +1,7 @@
-package com.onyx.onyxinstitutbackend.service;
+package com.onyx.onyxinstitutbackend.customer;
 
-import com.onyx.onyxinstitutbackend.model.Customers;
-import com.onyx.onyxinstitutbackend.repository.CustomersRepository;
+import com.onyx.onyxinstitutbackend.customer.Customers;
+import com.onyx.onyxinstitutbackend.customer.CustomersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

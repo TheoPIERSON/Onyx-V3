@@ -1,6 +1,6 @@
-package com.onyx.onyxinstitutbackend.repository;
+package com.onyx.onyxinstitutbackend.appointment;
 
-import com.onyx.onyxinstitutbackend.model.Appointment;
+import com.onyx.onyxinstitutbackend.appointment.Appointment;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

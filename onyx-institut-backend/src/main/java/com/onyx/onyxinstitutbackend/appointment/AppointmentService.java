@@ -1,8 +1,7 @@
-package com.onyx.onyxinstitutbackend.service;
+package com.onyx.onyxinstitutbackend.appointment;
 
-import com.onyx.onyxinstitutbackend.model.Appointment;
-import com.onyx.onyxinstitutbackend.model.Customers;
-import com.onyx.onyxinstitutbackend.repository.AppointmentRepository;
+import com.onyx.onyxinstitutbackend.appointment.Appointment;
+import com.onyx.onyxinstitutbackend.appointment.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
