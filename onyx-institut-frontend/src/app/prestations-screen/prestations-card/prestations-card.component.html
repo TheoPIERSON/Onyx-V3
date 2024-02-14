@@ -1,7 +1,7 @@
 <div
   id="main-container"
   class="searched-customer"
-  *ngFor="let service of typeService$ | async"
+  *ngFor="let service of typePrestation$ | async"
 >
   <button mat-raised-button (click)="onCardClick(service.id)">
     <svg xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 512 512">

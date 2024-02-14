@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { TypeService } from 'src/app/Models/type_service';
-import { TypeServiceService } from 'src/app/core/services/Type_serviceService/type-service.service';
+import { TypePrestation } from 'src/app/Models/type_prestation';
+import { TypePrestationService } from 'src/app/core/services/Type_prestation/type-prestation.service';
 
 @Component({
   selector: 'app-prestations-add',
@@ -10,20 +10,20 @@ import { TypeServiceService } from 'src/app/core/services/Type_serviceService/ty
   styleUrls: ['./prestations-add.component.css'],
 })
 export class PrestationsAddComponent {
-  public typeservice: TypeService[] = [];
+  public prestation: TypePrestation[] = [];
 
-  constructor(private typeService: TypeServiceService) {}
+  constructor(private typePrestationService: TypePrestationService) {}
 
-  public onAddCustomer(addForm: NgForm): void {
-    document.getElementById('add-customer-btn');
-    this.typeService.addPrestation(addForm.value).subscribe(
-      (response: TypeService) => {
+  public onAddPrestation(addPrestationForm: NgForm): void {
+    document.getElementById('add-prestation-btn');
+    this.typePrestationService.addPrestation(addPrestationForm.value).subscribe(
+      (response: TypePrestation) => {
         console.log(response);
-        addForm.reset();
+        addPrestationForm.reset();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        addForm.reset();
+        addPrestationForm.reset();
       }
     );
     window.location.reload();

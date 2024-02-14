@@ -1,4 +1,4 @@
-export interface TypeService {
+export interface TypePrestation {
   id: number;
   title: string;
   description: string;

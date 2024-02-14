@@ -1,4 +1,7 @@
-<form #addForm="ngForm" (ngSubmit)="onAddCustomer(addForm)">
+<form
+  #addPrestationForm="ngForm"
+  (ngSubmit)="onAddPrestation(addPrestationForm)"
+>
   <h2>Nouvelle prestation</h2>
   <div class="form-row">
     <div class="data-field">
@@ -51,7 +54,7 @@
     <div class="form-btn">
       <input
         class="input-btn"
-        [disabled]="addForm.invalid"
+        [disabled]="addPrestationForm.invalid"
         id="add-prestation-btn"
         type="submit"
         value="Ajouter la prestation"

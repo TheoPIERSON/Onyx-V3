@@ -4,8 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable, combineLatest, startWith, map } from 'rxjs';
 import { Customers } from 'src/app/Models/customerModel';
-import { TypeService } from 'src/app/Models/type_service';
-import { TypeServiceService } from 'src/app/core/services/Type_serviceService/type-service.service';
+import { TypePrestation } from 'src/app/Models/type_prestation';
+import { TypePrestationService } from 'src/app/core/services/Type_prestation/type-prestation.service';
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
 import { Customer } from 'src/app/customerClass';
@@ -18,11 +18,11 @@ import { ModalComponent } from 'src/app/modal/modal.component';
   styleUrls: ['./prestations-card.component.css'],
 })
 export class PrestationsCardComponent {
-  typeService$: Observable<TypeService[]> =
-    this.typeService.fetchTypeServices();
+  typePrestation$: Observable<TypePrestation[]> =
+    this.typePrestationService.fetchTypePrestation();
 
   constructor(
-    private typeService: TypeServiceService,
+    private typePrestationService: TypePrestationService,
     private customerIdService: CustomerIdService,
     public matDialog: MatDialog,
     private fb: FormBuilder
