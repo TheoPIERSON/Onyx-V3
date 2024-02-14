@@ -1,4 +1,4 @@
-package com.onyx.onyxinstitutbackend.type_service;
+package com.onyx.onyxinstitutbackend.type_prestation;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,11 +11,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "type_service")
-public class Type_service {
+@Table(name = "type_prestation")
+public class Type_prestation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_type_service", nullable = false, updatable = false)
+    @Column(name = "id_type_prestation", nullable = false, updatable = false)
     private Long id;
     private String title;
     private String description;

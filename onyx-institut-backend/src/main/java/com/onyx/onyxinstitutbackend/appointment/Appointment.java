@@ -1,6 +1,7 @@
 package com.onyx.onyxinstitutbackend.appointment;
 
 import com.onyx.onyxinstitutbackend.customer.Customers;
+import com.onyx.onyxinstitutbackend.type_prestation.Type_prestation;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,6 +29,11 @@ public class Appointment {
     @JoinColumn(name = "id_customer")
     private Customers customer;
 
+    @ManyToMany
+    @JoinTable(name = "prestation",
+                joinColumns = @JoinColumn(name = "appointment_id"),
+                inverseJoinColumns = @JoinColumn(name = "type_prestation_id"))
+    private Set<Type_prestation> typePrestations = new HashSet<>();
 }
 
 

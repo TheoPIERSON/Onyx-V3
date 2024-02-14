@@ -3,17 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CustomerComponent } from './customer/customer.component';
+import { CustomerComponent } from './customer-screen/customer/customer.component';
 import { CustomerService } from './core/services/customer.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CustomerCardComponent } from './customer-card/customer-card.component';
+import { CustomerCardComponent } from './customer-screen/customer-card/customer-card.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { CustomerAddComponent } from './customer-add/customer-add.component';
-import { CustomerSearchListComponent } from './customer-search-list/customer-search-list.component';
+import { CustomerAddComponent } from './customer-screen/customer-add/customer-add.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -66,7 +64,6 @@ class CustomeDateFormatter extends CalendarNativeDateFormatter {
     CustomerCardComponent,
     SidebarComponent,
     CustomerAddComponent,
-    CustomerSearchListComponent,
     ModalComponent,
     AppointmentComponent,
     AppointmentAddComponent,

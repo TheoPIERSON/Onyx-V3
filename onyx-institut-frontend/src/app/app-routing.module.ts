@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { provideRouter } from '@angular/router';
 
-import { CustomerComponent } from './customer/customer.component';
+import { CustomerComponent } from './customer-screen/customer/customer.component';
 import { AppointmentComponent } from './appointments-screen/appointment/appointment.component';
 import { PrestationsComponent } from './prestations-screen/prestations/prestations.component';
 import { DashboardComponent } from './dashboard-screen/dashboard/dashboard.component';

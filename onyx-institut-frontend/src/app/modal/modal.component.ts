@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Customers } from '../Models/customerModel';
-import { CustomerService } from '../core/services/customer.service';
+import { CustomerService } from 'src/app/core/services/customer.service';
+import { CustomerIdService } from 'src/app/core/services/customer-id.service';
+import { Customer } from 'src/app/customerClass';
+import { Customers } from 'src/app/Models/customerModel';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { Customer } from '../customerClass';
 import { ActivatedRoute } from '@angular/router';
-import { CustomerIdService } from '../core/services/customer-id.service';
 
 @Component({
   selector: 'app-modal',

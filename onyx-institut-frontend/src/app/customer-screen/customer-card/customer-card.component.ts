@@ -1,13 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Customers } from '../Models/customerModel';
-import { CustomerService } from '../core/services/customer.service';
+import { Customers } from '../../Models/customerModel';
+import { CustomerService } from '../../core/services/customer.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModalComponent } from '../modal/modal.component';
-import { Customer } from '../customerClass';
-import { CustomerIdService } from '../core/services/customer-id.service';
-import { Observable, combineLatest, first, map, startWith } from 'rxjs';
-import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
+import { ModalComponent } from '../../modal/modal.component';
+import { Customer } from '../../customerClass';
+import { CustomerIdService } from '../../core/services/customer-id.service';
+import { Observable, combineLatest, map, startWith } from 'rxjs';
+import { ModalDeleteComponent } from '../../modal-delete/modal-delete.component';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
