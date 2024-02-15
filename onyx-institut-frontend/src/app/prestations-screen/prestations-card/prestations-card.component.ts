@@ -5,10 +5,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable, combineLatest, startWith, map } from 'rxjs';
 import { Customers } from 'src/app/Models/customerModel';
 import { TypePrestation } from 'src/app/Models/type_prestation';
+import { RefreshService } from 'src/app/core/services/Refresh/refresh.service';
 import { TypePrestationService } from 'src/app/core/services/Type_prestation/type-prestation.service';
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { CustomerService } from 'src/app/core/services/customer.service';
-import { Customer } from 'src/app/customerClass';
 import { ModalDeleteComponent } from 'src/app/modal-delete/modal-delete.component';
 import { ModalComponent } from 'src/app/modal/modal.component';
 
@@ -21,12 +20,35 @@ export class PrestationsCardComponent {
   typePrestation$: Observable<TypePrestation[]> =
     this.typePrestationService.fetchTypePrestation();
 
+  search = this.fb.nonNullable.group({
+    title: [''],
+  });
+
   constructor(
     private typePrestationService: TypePrestationService,
-    private customerIdService: CustomerIdService,
     public matDialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private refreshService: RefreshService
   ) {}
+
+  public customers: TypePrestation[] = [];
+
+  refreshSubscription: any;
+
+  ngOnInit(): void {
+    // Abonnez-vous aux événements de rafraîchissement
+    this.refreshSubscription = this.refreshService
+      .getRefreshObservable()
+      .subscribe(() => {
+        // Mettez ici le code que vous souhaitez exécuter lors du rafraîchissement du composant
+        this.typePrestation$ = this.getTypePrestation(); // Réinitialisez les données du composant
+      });
+  }
+
+  ngOnDestroy(): void {
+    // N'oubliez pas de vous désabonner pour éviter les fuites de mémoire
+    this.refreshSubscription.unsubscribe();
+  }
 
   openModal() {
     const dialogConfig = new MatDialogConfig();
@@ -42,13 +64,10 @@ export class PrestationsCardComponent {
   }
 
   onCardClick(id: number): void {
-    console.log('Customer ID to search:', id);
-
-    // this.typeService.findCustomerById(id).subscribe(
+    // this.customerService.findCustomerById(id).subscribe(
     //   (res: Customers) => {
     //     this.selectedCustomer = res;
     //     this.customerIdService.setSelectedCustomerId(id);
-
     //     this.openModal(); // Ouvrez la modale avec les informations du client
     //   },
     //   (error: HttpErrorResponse) => {
@@ -57,7 +76,6 @@ export class PrestationsCardComponent {
     // );
   }
   onDeleteCardClick(id: number): void {
-    // console.log('Customer ID to search:', id);
     // this.customerService.findCustomerById(id).subscribe(
     //   (res: Customers) => {
     //     this.selectedCustomer = res;
@@ -68,5 +86,21 @@ export class PrestationsCardComponent {
     //     console.error(error);
     //   }
     // );
+  }
+
+  private getTypePrestation(): Observable<TypePrestation[]> {
+    const customers$ = this.typePrestationService.fetchTypePrestation();
+
+    const search$ = combineLatest([this.search.controls.title.valueChanges]);
+    return combineLatest([customers$, search$]).pipe(
+      map(([customers, [title]]) =>
+        customers.filter((customer) => {
+          const isFirstnameMatching = customer.title
+            .toLowerCase()
+            .includes(title.toLowerCase());
+          return isFirstnameMatching;
+        })
+      )
+    );
   }
 }

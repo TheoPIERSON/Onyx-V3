@@ -14,12 +14,12 @@ export class TypePrestationService {
 
   public fetchTypePrestation(): Observable<TypePrestation[]> {
     return this.http.get<TypePrestation[]>(
-      `${this.apiServerUrl}/type-service/all`
+      `${this.apiServerUrl}/type_prestation/all`
     );
   }
   public addPrestation(service: TypePrestation): Observable<TypePrestation> {
     return this.http.post<TypePrestation>(
-      `${this.apiServerUrl}/type-prestation/add`,
+      `${this.apiServerUrl}/type_prestation/add`,
       service
     );
   }
