@@ -5,11 +5,13 @@
 :root {
   --main-btn-color: #fc62aa;
   --main-bg-color: #fef4f9;
+  --light-card-color: #fde4f1;
 }
 
 * {
   margin: 0%;
   padding: 0%;
+  overflow: hidden;
 }
 
 html,

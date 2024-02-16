@@ -20,9 +20,12 @@ export class ModalDeleteComponent {
     firstname: '',
     lastname: '',
     phoneNumber: '',
-    mail: '',
+    email: '',
     birthdate: '',
   });
+  dialogRef: any;
+  refreshService: any;
+  toast: any;
 
   constructor(
     private customerService: CustomerService,
@@ -42,7 +45,7 @@ export class ModalDeleteComponent {
         this.selectedCustomer.firstname = res.firstname;
         this.selectedCustomer.lastname = res.lastname;
         this.selectedCustomer.phoneNumber = res.phoneNumber;
-        this.selectedCustomer.mail = res.mail;
+        this.selectedCustomer.email = res.email;
         this.selectedCustomer.birthdate = res.birthdate;
 
         console.log(this.selectedCustomer.firstname);
@@ -57,9 +60,23 @@ export class ModalDeleteComponent {
   }
 
   public onDeleteCustomer() {
-    this.customerService
-      .deleteCustomer(this.selectedCustomer.id)
-      .subscribe((res) => {});
-    console.log('customer deleted');
+    this.customerService.deleteCustomer(this.selectedCustomer.id).subscribe(
+      (res) => {
+        // Fermez la modal une fois la suppression terminée
+        this.dialogRef.close();
+        // Émettez un événement de rafraîchissement
+        this.refreshService.refreshComponent();
+      },
+      (error) => {
+        this.toast.error({
+          detail: 'ERREUR',
+          summary:
+            "Vous ne pouvez pas supprimer ce client, vérifiez qu'il ne soit pas associé à des rendez-vous.",
+          sticky: true,
+        });
+
+        console.error('Erreur lors de la suppression du client : ', error);
+      }
+    );
   }
 }

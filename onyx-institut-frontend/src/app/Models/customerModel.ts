@@ -3,6 +3,6 @@ export interface Customers {
   firstname: string;
   lastname: string;
   phoneNumber: string;
-  mail: string;
+  email: string;
   birthdate: string;
 }

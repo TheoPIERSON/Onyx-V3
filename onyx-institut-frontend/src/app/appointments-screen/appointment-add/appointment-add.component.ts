@@ -28,7 +28,7 @@ export class AppointmentAddComponent {
     firstname: '',
     lastname: '',
     phoneNumber: '',
-    mail: '',
+    email: '',
     birthdate: '',
   });
   // Récupère tout les customers de la base de données pour les utiliser
@@ -88,7 +88,7 @@ export class AppointmentAddComponent {
         firstname: this.selectedCustomer.firstname,
         lastname: this.selectedCustomer.lastname,
         phoneNumber: this.selectedCustomer.phoneNumber,
-        mail: this.selectedCustomer.mail,
+        email: this.selectedCustomer.email,
         birthdate: this.selectedCustomer.birthdate,
       },
     };

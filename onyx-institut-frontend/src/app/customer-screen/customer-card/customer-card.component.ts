@@ -9,6 +9,7 @@ import { CustomerIdService } from '../../core/services/customer-id.service';
 import { Observable, combineLatest, map, startWith } from 'rxjs';
 import { ModalDeleteComponent } from '../../modal-delete/modal-delete.component';
 import { FormBuilder } from '@angular/forms';
+import { RefreshService } from 'src/app/core/services/Refresh/refresh.service';
 
 @Component({
   selector: 'app-customer-card',
@@ -29,18 +30,35 @@ export class CustomerCardComponent {
     firstname: '',
     lastname: '',
     phoneNumber: '',
-    mail: '',
+    email: '',
     birthdate: '',
   });
 
   customers$: Observable<Customers[]> = this.getCustomers();
+  refreshSubscription: any;
 
   constructor(
     private customerService: CustomerService,
     private customerIdService: CustomerIdService,
     public matDialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private refreshService: RefreshService
   ) {}
+
+  ngOnInit(): void {
+    // Abonnez-vous aux événements de rafraîchissement
+    this.refreshSubscription = this.refreshService
+      .getRefreshObservable()
+      .subscribe(() => {
+        // Mettez ici le code que vous souhaitez exécuter lors du rafraîchissement du composant
+        this.customers$ = this.getCustomers(); // Réinitialisez les données du composant
+      });
+  }
+
+  ngOnDestroy(): void {
+    // N'oubliez pas de vous désabonner pour éviter les fuites de mémoire
+    this.refreshSubscription.unsubscribe();
+  }
 
   openModal() {
     const dialogConfig = new MatDialogConfig();
@@ -56,8 +74,6 @@ export class CustomerCardComponent {
   }
 
   onCardClick(id: number): void {
-    console.log('Customer ID to search:', id);
-
     this.customerService.findCustomerById(id).subscribe(
       (res: Customers) => {
         this.selectedCustomer = res;
@@ -71,7 +87,6 @@ export class CustomerCardComponent {
     );
   }
   onDeleteCardClick(id: number): void {
-    console.log('Customer ID to search:', id);
     this.customerService.findCustomerById(id).subscribe(
       (res: Customers) => {
         this.selectedCustomer = res;

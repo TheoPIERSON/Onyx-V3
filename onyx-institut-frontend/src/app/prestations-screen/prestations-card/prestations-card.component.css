@@ -20,7 +20,7 @@
   padding: 1rem;
   margin-top: 0.5rem;
   border-radius: 10px;
-  background-color: transparent;
+  background-color: var(--light-card-color);
   border: 2.5px solid #e8e8e8;
 }
 #edit-btn {

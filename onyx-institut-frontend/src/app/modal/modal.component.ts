@@ -22,7 +22,7 @@ export class ModalComponent implements OnInit {
     firstname: '',
     lastname: '',
     phoneNumber: '',
-    mail: '',
+    email: '',
     birthdate: '',
   });
 
@@ -46,7 +46,7 @@ export class ModalComponent implements OnInit {
         this.selectedCustomer.firstname = res.firstname;
         this.selectedCustomer.lastname = res.lastname;
         this.selectedCustomer.phoneNumber = res.phoneNumber;
-        this.selectedCustomer.mail = res.mail;
+        this.selectedCustomer.email = res.email;
         this.selectedCustomer.birthdate = res.birthdate;
 
         // Vous pouvez également mettre à jour d'autres propriétés si nécessaire

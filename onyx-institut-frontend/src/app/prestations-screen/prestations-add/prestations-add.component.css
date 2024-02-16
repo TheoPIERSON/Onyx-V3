@@ -41,7 +41,7 @@ h2 {
   justify-content: center;
 }
 #add-prestation-btn {
-  background-color: #fc62aa;
+  background-color: var(--main-btn-color);
 }
 
 .input-btn {

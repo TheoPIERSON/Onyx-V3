@@ -5,7 +5,7 @@ export class Customer implements Customers {
   firstname: string;
   lastname: string;
   phoneNumber: string;
-  mail: string;
+  email: string;
   birthdate: string;
 
   // Ajoutez un constructeur si nécessaire
@@ -14,7 +14,7 @@ export class Customer implements Customers {
     this.firstname = customerData.firstname;
     this.lastname = customerData.lastname;
     this.phoneNumber = customerData.phoneNumber;
-    this.mail = customerData.mail;
+    this.email = customerData.email;
     this.birthdate = customerData.birthdate;
   }
 }

@@ -9,6 +9,7 @@
   margin-left: 17%;
   padding: 1rem;
   max-height: 100%;
+  border-radius: 8px;
 }
 .searched-customer {
   display: flex;
@@ -16,8 +17,12 @@
   padding: 1rem;
   margin-top: 0.5rem;
   border-radius: 5px;
-  background-color: #fde4f1;
+  background-color: var(--light-card-color);
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.list-container {
+  height: 20rem;
+  overflow-y: auto;
 }
 
 h2 {
