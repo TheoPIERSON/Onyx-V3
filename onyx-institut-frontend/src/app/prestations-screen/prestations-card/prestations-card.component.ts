@@ -3,9 +3,11 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable, combineLatest, startWith, map } from 'rxjs';
+import { Type_prestation } from 'src/app/Models/classes/type_prestation_class';
 import { Customers } from 'src/app/Models/customerModel';
 import { TypePrestation } from 'src/app/Models/type_prestation';
 import { RefreshService } from 'src/app/core/services/Refresh/refresh.service';
+import { TypePrestationIdService } from 'src/app/core/services/Type_prestation/type-prestation-id.service';
 import { TypePrestationService } from 'src/app/core/services/Type_prestation/type-prestation.service';
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 import { ModalDeleteComponent } from 'src/app/modal-delete/modal-delete.component';
@@ -17,23 +19,30 @@ import { ModalComponent } from 'src/app/modal/modal.component';
   styleUrls: ['./prestations-card.component.css'],
 })
 export class PrestationsCardComponent {
-  typePrestation$: Observable<TypePrestation[]> =
-    this.typePrestationService.fetchTypePrestation();
+  public typePrestation: TypePrestation[] = [];
 
   search = this.fb.nonNullable.group({
     title: [''],
   });
 
+  selectedTypePrestation = new Type_prestation({
+    id: 0, // ou l'ID par défaut que vous préférez
+    title: '',
+    description: '',
+    duration: 0,
+    price: 0,
+  });
+
+  typePrestation$: Observable<TypePrestation[]> = this.getTypePrestation();
+  refreshSubscription: any;
+
   constructor(
     private typePrestationService: TypePrestationService,
+    private typePrestationIdService: TypePrestationIdService,
     public matDialog: MatDialog,
     private fb: FormBuilder,
     private refreshService: RefreshService
   ) {}
-
-  public customers: TypePrestation[] = [];
-
-  refreshSubscription: any;
 
   ngOnInit(): void {
     // Abonnez-vous aux événements de rafraîchissement
@@ -64,16 +73,16 @@ export class PrestationsCardComponent {
   }
 
   onCardClick(id: number): void {
-    // this.customerService.findCustomerById(id).subscribe(
-    //   (res: Customers) => {
-    //     this.selectedCustomer = res;
-    //     this.customerIdService.setSelectedCustomerId(id);
-    //     this.openModal(); // Ouvrez la modale avec les informations du client
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     console.error(error);
-    //   }
-    // );
+    this.typePrestationService.findById(id).subscribe(
+      (res: TypePrestation) => {
+        this.selectedTypePrestation = res;
+        this.typePrestationIdService.setSelectedTypePrestationId(id);
+        this.openModal(); // Ouvrez la modale avec les informations du client
+      },
+      (error: HttpErrorResponse) => {
+        console.error(error);
+      }
+    );
   }
   onDeleteCardClick(id: number): void {
     // this.customerService.findCustomerById(id).subscribe(
@@ -89,16 +98,18 @@ export class PrestationsCardComponent {
   }
 
   private getTypePrestation(): Observable<TypePrestation[]> {
-    const customers$ = this.typePrestationService.fetchTypePrestation();
+    const type_prestation$ = this.typePrestationService.fetchTypePrestation();
 
-    const search$ = combineLatest([this.search.controls.title.valueChanges]);
-    return combineLatest([customers$, search$]).pipe(
-      map(([customers, [title]]) =>
-        customers.filter((customer) => {
-          const isFirstnameMatching = customer.title
+    const search$ = combineLatest([
+      this.search.controls.title.valueChanges.pipe(startWith('')),
+    ]);
+    return combineLatest([type_prestation$, search$]).pipe(
+      map(([type_prestation, [title]]) =>
+        type_prestation.filter((type_prestation) => {
+          const isTitleMatching = type_prestation.title
             .toLowerCase()
             .includes(title.toLowerCase());
-          return isFirstnameMatching;
+          return isTitleMatching;
         })
       )
     );
