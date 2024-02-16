@@ -6,6 +6,9 @@
   --main-btn-color: #fc62aa;
   --main-bg-color: #fef4f9;
   --light-card-color: #fde4f1;
+  --strong-list-card-color: #ffb7d9;
+  --input-data-bg-color: white;
+  --input-data-border-color: #e4e4e4;
 }
 
 * {

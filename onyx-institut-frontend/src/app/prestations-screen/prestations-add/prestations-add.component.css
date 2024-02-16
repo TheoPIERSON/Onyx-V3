@@ -27,11 +27,12 @@ h2 {
 
 .form-row {
   margin-left: 3rem;
-  display: grid;
+  margin-right: 2rem;
+  display: flex;
   align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   padding-bottom: 0.5rem;
-  justify-content: center;
+  justify-content: space-between;
 }
 .form-btn {
   margin-left: 1rem;

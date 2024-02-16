@@ -4,7 +4,7 @@
   font-family: "Mirza", serif;
 }
 .search-list {
-  background-color: #ffb7d9;
+  background-color: var(--strong-list-card-color);
   margin: 0.7rem;
   margin-left: 17%;
   padding: 1rem;

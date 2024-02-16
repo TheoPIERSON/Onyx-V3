@@ -4,12 +4,11 @@
   font-family: "Mirza", serif;
 }
 .search-list {
-  background-color: transparent;
+  background-color: var(--strong-list-card-color);
   margin: 0.7rem;
   margin-left: 17%;
   padding: 0.5rem;
   max-height: 30rem;
-  border: 2.5px solid #e8e8e8;
   border-radius: 10px;
   overflow-y: auto;
 }
@@ -21,7 +20,6 @@
   margin-top: 0.5rem;
   border-radius: 10px;
   background-color: var(--light-card-color);
-  border: 2.5px solid #e8e8e8;
 }
 #edit-btn {
   background-color: transparent;
@@ -39,8 +37,8 @@ h2 {
 }
 
 .input-data {
-  background-color: white;
-  border: 1px solid #e4e4e4;
+  background-color: var(--input-data-bg-color);
+  border: 1px solid var(--input-data-border-color);
   border-radius: 15px;
   display: inline-flex;
   padding: 0.2rem;
@@ -53,10 +51,4 @@ h2 {
   align-items: center;
   grid-template-columns: 1fr 1fr;
   padding-bottom: 1rem;
-}
-.separation {
-  margin-left: 1.5rem;
-  margin-top: 0.3rem;
-  border-bottom: 1px solid #e4e4e4;
-  width: 95%;
 }
