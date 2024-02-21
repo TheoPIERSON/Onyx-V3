@@ -33,11 +33,13 @@ public class CustomersController {
         Customers newCustomer = customersService.addCustomer(customer);
         return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
     }
-
     @PutMapping("/update/{id}")
-    public ResponseEntity<Customers> updateCustomer(@RequestBody Customers customer){
-        Customers updateCustomer = customersService.updateCustomer(customer);
-        return new ResponseEntity<>(updateCustomer, HttpStatus.OK);
+    public ResponseEntity<Customers> updateCustomer(@PathVariable Long id, @RequestBody Customers updatedCustomer){
+        Customers customer = customersService.updateCustomer(id, updatedCustomer);
+        if(customer != null) {
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteCustomer(@PathVariable("id") Long id_customer){

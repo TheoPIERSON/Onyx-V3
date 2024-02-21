@@ -25,5 +25,4 @@ public class Customers {
     private String phoneNumber;
     private String email;
     private Date birthdate;
-
 }

@@ -1,5 +1,6 @@
 package com.onyx.onyxinstitutbackend.type_prestation;
 
+import com.onyx.onyxinstitutbackend.customer.Customers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,12 +8,17 @@ import org.springframework.stereotype.Service;
 public class Type_prestationService {
     @Autowired
     private Type_prestationRepository Type_prestationRepository;
+
     public Iterable<Type_prestation> getAllTypePrestations(){
         return Type_prestationRepository.findAll();
     }
     public Type_prestation addTypePrestation(Type_prestation typePrestation){
         return Type_prestationRepository.save(typePrestation);
     }
+    public Type_prestation findById(Long id){
+        return Type_prestationRepository.findTypePrestationById(id);
+    }
+
     public Type_prestation updateTypePrestation(Type_prestation typePrestation){
         return Type_prestationRepository.save(typePrestation);
     }

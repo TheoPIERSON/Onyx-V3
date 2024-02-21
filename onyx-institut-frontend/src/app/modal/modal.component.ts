@@ -63,5 +63,6 @@ export class ModalComponent implements OnInit {
     this.customerService
       .updateCustomer(this.selectedCustomer)
       .subscribe((res) => {});
+    console.log('Customer updated : ' + this.selectedCustomer.firstname);
   }
 }

@@ -23,4 +23,22 @@ export class TypePrestationService {
       service
     );
   }
+  public findById(id: number): Observable<TypePrestation> {
+    return this.http.get<TypePrestation>(
+      `${this.apiServerUrl}/type_prestation/${id}`
+    );
+  }
+
+  public updateTypePrestation(
+    typePrestation: TypePrestation
+  ): Observable<TypePrestation> {
+    const url = `${this.apiServerUrl}/type_prestation/update/${typePrestation.id}`;
+    return this.http.put<TypePrestation>(url, typePrestation);
+  }
+
+  public deleteTypePrestation(id: number): Observable<void> {
+    return this.http.delete<void>(
+      `${this.apiServerUrl}/type_prestation/delete/${id}`
+    );
+  }
 }

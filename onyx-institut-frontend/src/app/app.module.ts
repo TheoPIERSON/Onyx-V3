@@ -40,6 +40,8 @@ import { PrestationsComponent } from './prestations-screen/prestations/prestatio
 import { DashboardComponent } from './dashboard-screen/dashboard/dashboard.component';
 import { PrestationsAddComponent } from './prestations-screen/prestations-add/prestations-add.component';
 import { PrestationsCardComponent } from './prestations-screen/prestations-card/prestations-card.component';
+import { PrestationEditModalComponent } from './prestations-screen/prestation-edit-modal/prestation-edit-modal.component';
+import { PrestationDeleteModalComponent } from './prestations-screen/prestation-delete-modal/prestation-delete-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -73,6 +75,8 @@ class CustomeDateFormatter extends CalendarNativeDateFormatter {
     DashboardComponent,
     PrestationsAddComponent,
     PrestationsCardComponent,
+    PrestationEditModalComponent,
+    PrestationDeleteModalComponent,
   ],
   imports: [
     BrowserModule,

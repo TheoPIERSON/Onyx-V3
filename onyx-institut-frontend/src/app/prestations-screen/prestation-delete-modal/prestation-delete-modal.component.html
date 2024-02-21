@@ -1,1 +1,22 @@
-<p>prestation-delete-modal works!</p>
+<div id="modal-content-wrapper">
+  <h1>
+    Vous vous apprétez à supprimer la prestation {{ selectedCustomer.title }}
+  </h1>
+  <h2>Etes-vous sûr de vouloir le supprimer ?</h2>
+  <div class="form-btn">
+    <input
+      (click)="onDeleteCustomer()"
+      class="input-btn"
+      id="delete-customer-btn-oui"
+      type="submit"
+      value="OUI"
+    />
+
+    <input
+      class="input-btn"
+      id="delete-customer-btn-non"
+      type="button"
+      value="NON"
+    />
+  </div>
+</div>

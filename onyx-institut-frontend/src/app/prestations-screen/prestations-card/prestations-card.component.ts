@@ -12,6 +12,8 @@ import { TypePrestationService } from 'src/app/core/services/Type_prestation/typ
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 import { ModalDeleteComponent } from 'src/app/modal-delete/modal-delete.component';
 import { ModalComponent } from 'src/app/modal/modal.component';
+import { PrestationEditModalComponent } from '../prestation-edit-modal/prestation-edit-modal.component';
+import { PrestationDeleteModalComponent } from '../prestation-delete-modal/prestation-delete-modal.component';
 
 @Component({
   selector: 'app-prestations-card',
@@ -61,15 +63,21 @@ export class PrestationsCardComponent {
 
   openModal() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.id = 'modal-component';
+    dialogConfig.id = 'prestation-edit-modal-component';
     // https://material.angular.io/components/dialog/overview
-    const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
+    const modalDialog = this.matDialog.open(
+      PrestationEditModalComponent,
+      dialogConfig
+    );
   }
 
   openModalDelete() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.id = 'modal-delete-component';
-    const modalDialog = this.matDialog.open(ModalDeleteComponent, dialogConfig);
+    dialogConfig.id = 'prestation-delete-modal-component';
+    const modalDialog = this.matDialog.open(
+      PrestationDeleteModalComponent,
+      dialogConfig
+    );
   }
 
   onCardClick(id: number): void {
@@ -85,16 +93,16 @@ export class PrestationsCardComponent {
     );
   }
   onDeleteCardClick(id: number): void {
-    // this.customerService.findCustomerById(id).subscribe(
-    //   (res: Customers) => {
-    //     this.selectedCustomer = res;
-    //     this.customerIdService.setSelectedCustomerId(id);
-    //     this.openModalDelete(); // Ouvrez la modale avec les informations du client
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     console.error(error);
-    //   }
-    // );
+    this.typePrestationService.findById(id).subscribe(
+      (res: TypePrestation) => {
+        this.selectedTypePrestation = res;
+        this.typePrestationIdService.setSelectedTypePrestationId(id);
+        this.openModalDelete(); // Ouvrez la modale avec les informations du client
+      },
+      (error: HttpErrorResponse) => {
+        console.error(error);
+      }
+    );
   }
 
   private getTypePrestation(): Observable<TypePrestation[]> {
