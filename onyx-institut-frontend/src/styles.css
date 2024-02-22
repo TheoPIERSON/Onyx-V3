@@ -3,8 +3,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --main-btn-color: #fc62aa;
+  /* used in sidebar */
   --main-bg-color: #fef4f9;
+  --list-global-color: #ffe3f1;
+  --list-select-color: #ffc7e3;
+  /* used in */
+  --main-btn-color: #fc62aa;
   --light-card-color: #fde4f1;
   --strong-list-card-color: #ffb7d9;
   --input-data-bg-color: white;

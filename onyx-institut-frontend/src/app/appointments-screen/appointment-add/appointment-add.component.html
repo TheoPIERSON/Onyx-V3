@@ -2,7 +2,7 @@
   <h2>Nouveau rendez-vous</h2>
   <div class="form-row">
     <div class="data-field">
-      <label for="customer-name">Nom de la cliente :</label>
+      <label for="customer-name">Nom du client :</label>
       <input
         class="input-data"
         type="text"
@@ -12,13 +12,13 @@
       />
     </div>
     <div class="data-field">
-      <label for="">Prenom :</label>
+      <label for="">Prestation :</label>
       <input
         class="input-data"
         type="text"
         required
-        placeholder="Prénom"
-        formControlName="firstname"
+        placeholder="Prestation"
+        formControlName="title"
       />
     </div>
     <div class="data-field">
@@ -31,6 +31,7 @@
         formControlName="startDate"
       />
     </div>
+    <div class="data-field"></div>
     <div class="data-field"></div>
     <div class="data-field">
       <label for="end-date">Date de fin</label>
@@ -51,7 +52,7 @@
     (click)="onAddAppointment()"
   />
 </form>
-<div class="searched-customer">
+<div class="searched-customer" id="searched-customer">
   <div
     id="main-container"
     *ngFor="let customer of customers$ | async"
@@ -62,4 +63,14 @@
     </div>
   </div>
 </div>
-<!-- <div class="searched-customer">theo Pierson</div> -->
+<div class="searched-prestations" id="searched-prestations">
+  <div
+    id="main-container"
+    *ngFor="let prestation of typePrestation$ | async"
+    (click)="selectTypePrestation(prestation)"
+  >
+    <div class="search-list">
+      {{ prestation.title }}
+    </div>
+  </div>
+</div>

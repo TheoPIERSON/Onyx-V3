@@ -2,6 +2,8 @@
   margin-left: 16.5%;
   margin-right: 0.5%;
   margin-bottom: 0.5%;
+  height: 35rem;
+  overflow-y: auto;
 }
 #calendar-btn {
   display: flex;

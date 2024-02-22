@@ -2,7 +2,7 @@
   margin: 0%;
   padding: 0%;
   font-family: "Mirza", serif;
-  background-color: #fef4f9;
+  background-color: var(--main-bg-color);
 }
 
 form {
@@ -42,7 +42,7 @@ h2 {
 }
 
 #add-appointment-btn {
-  background-color: #fc62aa;
+  background-color: var(--main-btn-color);
   color: white;
 }
 .input-btn {
@@ -55,4 +55,34 @@ h2 {
   padding-bottom: 0.5rem;
   margin-left: 6rem;
   margin-bottom: 0.5rem;
+}
+
+.searched-customer {
+  margin-left: 13%;
+  position: fixed;
+  top: 12%;
+  left: 13%;
+  height: 4rem;
+  overflow-y: auto;
+}
+.searched-prestations {
+  margin-left: 13%;
+  position: fixed;
+  top: 12%;
+  left: 39%;
+  height: 4rem;
+  overflow-y: auto;
+}
+.search-list {
+  background-color: var(--list-global-color);
+  padding: 0.4rem;
+  border-bottom: 1px solid #e4e4e4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.search-list:hover {
+  background-color: var(--list-select-color);
+  cursor: pointer;
 }

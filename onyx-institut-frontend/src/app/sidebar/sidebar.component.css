@@ -54,10 +54,10 @@ li {
 }
 
 .button:hover {
-  background-color: #ffe3f1;
+  background-color: var(--list-global-color);
   border-radius: 10px;
 }
 .active-link {
-  background-color: #ffc7e3;
+  background-color: var(--list-select-color);
   border-radius: 10px;
 }
