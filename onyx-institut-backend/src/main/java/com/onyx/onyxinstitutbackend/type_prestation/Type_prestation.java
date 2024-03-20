@@ -1,10 +1,15 @@
 package com.onyx.onyxinstitutbackend.type_prestation;
 
+import com.onyx.onyxinstitutbackend.appointment.Appointment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,5 +26,4 @@ public class Type_prestation {
     private String description;
     private int price;
     private int duration;
-
 }

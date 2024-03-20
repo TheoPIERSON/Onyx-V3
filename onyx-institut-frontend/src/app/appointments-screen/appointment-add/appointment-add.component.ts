@@ -107,13 +107,43 @@ export class AppointmentAddComponent {
     this.search.patchValue({
       title: typePrestation.title,
     });
+    console.log(this.selectedTypePrestation.duration);
+  }
+
+  testClick(): void {
+    const startDate: Date = this.search.value.startDate ?? new Date();
+    const endDate: Date = new Date(startDate);
+
+    endDate.setMinutes(
+      startDate.getMinutes() + this.selectedTypePrestation.duration
+    );
+    console.log(startDate);
+
+    console.log(endDate);
   }
 
   //Ajoute le nouvel appointment dans la base de données
   public onAddAppointment(): void {
+    // this.search.value.startDate + this.selectedTypePrestation.duration
+
     // Récupérer la date sélectionnée dans le formulaire
-    const selectedStartDate: Date = this.search.value.startDate ?? new Date();
-    const selectedEndDate: Date = this.search.value.endDate ?? new Date();
+    let selectedStartDate: Date = this.search.value.startDate ?? new Date();
+
+    // Vérifier si selectedStartDate est une date valide
+    if (
+      !(
+        selectedStartDate instanceof Date && !isNaN(selectedStartDate.getTime())
+      )
+    ) {
+      // Si ce n'est pas une date valide, utiliser la date actuelle
+      selectedStartDate = new Date();
+    }
+
+    // Créer la date de fin en ajoutant la durée à la date de début
+    const selectedEndDate: Date = new Date(
+      selectedStartDate.getTime() + this.selectedTypePrestation.duration * 60000
+    );
+
     // Reste du code...
     const appointmentObj: Appointments = {
       id: 0,
@@ -127,10 +157,22 @@ export class AppointmentAddComponent {
         email: this.selectedCustomer.email,
         birthdate: this.selectedCustomer.birthdate,
       },
+      // typePrestation: {
+      //   id: this.selectedTypePrestation.id,
+      //   title: this.selectedTypePrestation.title,
+      //   description: this.selectedTypePrestation.description,
+      //   duration: this.selectedTypePrestation.duration,
+      //   price: this.selectedTypePrestation.price,
+      // },
     };
     this.appointmentService
       .addAppointment(appointmentObj)
       .subscribe((response: Appointments) => {});
-    window.location.reload();
+    //window.location.reload();
+    console.log(appointmentObj.appointmentStartDate);
+    console.log(appointmentObj.customer.firstname);
+
+    console.log(appointmentObj.appointmentEndDate);
+    console.log(appointmentObj);
   }
 }

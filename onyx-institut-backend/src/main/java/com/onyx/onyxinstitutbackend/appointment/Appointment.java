@@ -31,9 +31,8 @@ public class Appointment {
 
     @ManyToMany
     @JoinTable(name = "prestation",
-                joinColumns = @JoinColumn(name = "appointment_id"),
-                inverseJoinColumns = @JoinColumn(name = "type_prestation_id"))
-    private Set<Type_prestation> typePrestations = new HashSet<>();
+            joinColumns = @JoinColumn(name = "id_appointment"),
+            inverseJoinColumns = @JoinColumn(name = "id_type_prestation"))
+    Set<Type_prestation> prestation;
+
 }
-
-

@@ -33,16 +33,6 @@
     </div>
     <div class="data-field"></div>
     <div class="data-field"></div>
-    <div class="data-field">
-      <label for="end-date">Date de fin</label>
-      <input
-        class="input-data"
-        type="datetime-local"
-        name="end-date"
-        id="end-date"
-        formControlName="endDate"
-      />
-    </div>
   </div>
   <input
     class="input-btn"
@@ -50,6 +40,13 @@
     type="submit"
     value="Ajouter le rendez-vous"
     (click)="onAddAppointment()"
+  />
+  <input
+    class="input-btn"
+    id="add-appointment-btn"
+    type="submit"
+    value="Ajouter "
+    (click)="testClick()"
   />
 </form>
 <div class="searched-customer" id="searched-customer">

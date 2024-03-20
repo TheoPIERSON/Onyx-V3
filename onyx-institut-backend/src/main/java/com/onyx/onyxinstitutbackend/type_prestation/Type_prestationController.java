@@ -25,6 +25,8 @@ public class Type_prestationController {
             Type_prestation newTypePrestation = Type_prestationService.addTypePrestation(typePrestation);
             return new ResponseEntity<>(newTypePrestation, HttpStatus.CREATED);
         }
+
+
         @GetMapping("/{id}")
         public ResponseEntity<Type_prestation> getTypePretationById (@PathVariable("id") Long id_type_prestation){
             Type_prestation type_prestation = Type_prestationService.findById(id_type_prestation);
