@@ -42,9 +42,11 @@ import { PrestationsAddComponent } from './prestations-screen/prestations-add/pr
 import { PrestationsCardComponent } from './prestations-screen/prestations-card/prestations-card.component';
 import { PrestationEditModalComponent } from './prestations-screen/prestation-edit-modal/prestation-edit-modal.component';
 import { PrestationDeleteModalComponent } from './prestations-screen/prestation-delete-modal/prestation-delete-modal.component';
+import { AppointmentModalComponent } from './appointments-screen/appointment-modal/appointment-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
+@Injectable()
 class CustomeDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({ date, locale }: DateFormatterParams): string {
     return new Intl.DateTimeFormat(locale, {
@@ -77,6 +79,7 @@ class CustomeDateFormatter extends CalendarNativeDateFormatter {
     PrestationsCardComponent,
     PrestationEditModalComponent,
     PrestationDeleteModalComponent,
+    AppointmentModalComponent,
   ],
   imports: [
     BrowserModule,

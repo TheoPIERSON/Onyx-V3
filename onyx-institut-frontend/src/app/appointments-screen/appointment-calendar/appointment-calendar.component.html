@@ -1,3 +1,10 @@
+<div class="droite" *ngFor="let rdv of appointment$ | async">
+  <div>{{ rdv.customer.firstname }}</div>
+
+  <div>{{ rdv.appointmentEndDate }}</div>
+  <div>{{ rdv.appointmentStartDate }}</div>
+</div>
+
 <div id="calendar-container">
   <div id="calendar-btn">
     <div id="cal-date-nav-buttons">

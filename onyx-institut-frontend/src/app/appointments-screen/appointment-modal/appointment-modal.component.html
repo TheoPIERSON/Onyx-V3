@@ -1,0 +1,74 @@
+<div id="modal-content-wrapper">
+  <form #editForm="ngForm" (ngSubmit)="onUpdateCustomer()">
+    <div class="form-row">
+      <div class="data-field">
+        <input
+          name="id_customer"
+          [(ngModel)]="selectedCustomer.id"
+          type="hidden"
+        />
+        <label for="lastname">Nom :</label>
+        <input
+          name="lastname"
+          [(ngModel)]="selectedCustomer.lastname"
+          class="input-data"
+          type="text"
+          value="{{ selectedCustomer.lastname }}"
+        />
+      </div>
+      <div class="data-field">
+        <label for="">Prénom :</label>
+        <input
+          name="firstname"
+          [(ngModel)]="selectedCustomer.firstname"
+          class="input-data"
+          type="text"
+          value="{{ selectedCustomer.firstname }}"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="data-field">
+        <label for="">Mail :</label>
+        <input
+          name="mail"
+          [(ngModel)]="selectedCustomer.email"
+          class="input-data"
+          type="text"
+          value="{{ selectedCustomer.email }}"
+        />
+      </div>
+      <div class="data-field">
+        <label for="">Date de naissance :</label>
+        <input
+          name="birthdate"
+          [(ngModel)]="selectedCustomer.birthdate"
+          class="input-data"
+          type="date"
+          value="{{ selectedCustomer.birthdate }}"
+        />
+      </div>
+    </div>
+    <div class="form-row-inline">
+      <div class="data-field">
+        <label for="">Numéro de téléphone :</label>
+        <input
+          name="phoneNumber"
+          [(ngModel)]="selectedCustomer.phoneNumber"
+          class="input-data"
+          type="text"
+          value="{{ selectedCustomer.lastname }}"
+        />
+      </div>
+    </div>
+    <div class="form-btn">
+      <input
+        class="input-btn"
+        id="edit-customer-btn"
+        type="submit"
+        value="Sauvegarder"
+      />
+    </div>
+  </form>
+</div>

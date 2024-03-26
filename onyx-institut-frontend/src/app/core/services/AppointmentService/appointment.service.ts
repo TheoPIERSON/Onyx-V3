@@ -23,4 +23,9 @@ export class AppointmentService {
       appointment
     );
   }
+  public findById(id: number): Observable<Appointments> {
+    return this.http.get<Appointments>(
+      `${this.apiServerUrl}/appointment/${id}`
+    );
+  }
 }
