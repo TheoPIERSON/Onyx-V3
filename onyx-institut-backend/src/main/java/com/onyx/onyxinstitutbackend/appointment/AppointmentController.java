@@ -26,6 +26,12 @@ public class AppointmentController {
         return new ResponseEntity<>(appointment, HttpStatus.OK);
     }
 
+    @GetMapping("/latest")
+    public ResponseEntity<Appointment> getLatestAppointment (){
+        Appointment appointment = appointmentService.findLatestAppointment();
+        return new ResponseEntity<>(appointment, HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Appointment> addAppointment(@RequestBody Appointment appointment){
         Appointment newAppointment = appointmentService.addAppointment(appointment);

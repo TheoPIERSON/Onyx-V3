@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, NgForm } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable, combineLatest, map } from 'rxjs';
 import { Appointments } from 'src/app/Models/appointmentModel';
 import { Type_prestation } from 'src/app/Models/classes/type_prestation_class';
@@ -11,6 +11,10 @@ import { AppointmentService } from 'src/app/core/services/AppointmentService/app
 import { TypePrestationService } from 'src/app/core/services/Type_prestation/type-prestation.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
 import { Customer } from 'src/app/customerClass';
+import { AppointmentModalComponent } from '../appointment-modal/appointment-modal.component';
+import { TypePrestationIdService } from 'src/app/core/services/Type_prestation/type-prestation-id.service';
+import { AppointmentIdService } from 'src/app/core/services/AppointmentService/appointment-id.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-appointment-add',
@@ -53,7 +57,9 @@ export class AppointmentAddComponent {
   constructor(
     private customerService: CustomerService,
     private typePrestationService: TypePrestationService,
+    private typePrestationIdService: TypePrestationIdService,
     private appointmentService: AppointmentService,
+    private appointmentIdService: AppointmentIdService,
     public matDialog: MatDialog,
     private fb: FormBuilder
   ) {}
@@ -81,7 +87,6 @@ export class AppointmentAddComponent {
     this.search.patchValue({
       lastname: customer.lastname,
     });
-    console.log(customer.lastname);
   }
 
   // Permet de chercher les type de prestations avec la barre de recherche
@@ -107,7 +112,6 @@ export class AppointmentAddComponent {
     this.search.patchValue({
       title: typePrestation.title,
     });
-    console.log(this.selectedTypePrestation.duration);
   }
 
   testClick(): void {
@@ -117,17 +121,20 @@ export class AppointmentAddComponent {
     } else {
       startDate = this.search.value.startDate ?? new Date();
     }
-
     const endDate: Date = new Date(startDate);
-    console.log(typeof startDate);
-
     endDate.setMinutes(
       startDate.getMinutes() + this.selectedTypePrestation.duration
     );
-    console.log(this.selectedTypePrestation.duration);
+  }
 
-    console.log('la date de début est ' + startDate);
-    console.log('la date de fin  est ' + endDate);
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.id = 'modal-component';
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(
+      AppointmentModalComponent,
+      dialogConfig
+    );
   }
 
   //Ajoute le nouvel appointment dans la base de données
@@ -138,18 +145,10 @@ export class AppointmentAddComponent {
     } else {
       startDate = this.search.value.startDate ?? new Date();
     }
-
     const endDate: Date = new Date(startDate);
-    console.log(typeof startDate);
-
     endDate.setMinutes(
       startDate.getMinutes() + this.selectedTypePrestation.duration
     );
-    console.log(this.selectedTypePrestation.duration);
-
-    console.log('la date de début est ' + startDate);
-    console.log('la date de fin  est ' + endDate);
-
     const appointmentObj: Appointments = {
       id: 0,
       appointmentStartDate: startDate,
@@ -163,25 +162,23 @@ export class AppointmentAddComponent {
         birthdate: this.selectedCustomer.birthdate,
       },
     };
-    // this.appointmentService
-    //   .addAppointment(appointmentObj)
-    //   .subscribe((response: Appointments) => {});
-    //window.location.reload();
-    console.log(appointmentObj.appointmentStartDate);
-    console.log(appointmentObj.customer.firstname);
 
-    console.log(appointmentObj.appointmentEndDate);
+    this.appointmentService
+      .addAppointment(appointmentObj)
+      .subscribe((response: Appointments) => {});
+    this.typePrestationService
+      .findById(this.selectedTypePrestation.id)
+      .subscribe(
+        (res: TypePrestation) => {
+          this.selectedTypePrestation = res;
+          this.typePrestationIdService.setSelectedTypePrestationId(
+            this.selectedTypePrestation.id
+          );
+          this.openModal(); // Ouvrez la modale avec les informations du client
+        },
+        (error: HttpErrorResponse) => {
+          console.error(error);
+        }
+      );
   }
 }
-
-// testClick(): void {
-//   const startDate: Date = this.search.value.startDate ?? new Date();
-//   const endDate: Date = new Date(startDate);
-
-//   endDate.setMinutes(
-//     startDate.getMinutes() + this.selectedTypePrestation.duration
-//   );
-//   console.log(startDate);
-
-//   console.log(endDate);
-// }

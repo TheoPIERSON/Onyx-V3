@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { Appointments } from 'src/app/Models/appointmentModel';
 import { environment } from 'src/environments/environment';
 
@@ -27,5 +27,27 @@ export class AppointmentService {
     return this.http.get<Appointments>(
       `${this.apiServerUrl}/appointment/${id}`
     );
+  }
+  public getLatestAppointment(): Observable<Appointments> {
+    return this.http.get<Appointments>(
+      `${this.apiServerUrl}/appointment/latest`
+    );
+  }
+
+  assignPrestationToAppointment(
+    idAppointment: number,
+    idTypePrestation: number
+  ): Observable<any> {
+    return this.http
+      .put<any>(
+        `${this.apiServerUrl}/appointment/${idAppointment}/type-prestation/${idTypePrestation}`,
+        null
+      )
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: any) {
+    console.error('API Error: ', error);
+    return throwError('Something went wrong; please try again later.');
   }
 }

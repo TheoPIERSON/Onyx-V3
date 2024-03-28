@@ -1,10 +1,12 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { Appointment } from 'src/app/Models/appointmentClass';
+import { Type_prestation } from 'src/app/Models/classes/type_prestation_class';
 import { Customers } from 'src/app/Models/customerModel';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { CustomerService } from 'src/app/core/services/customer.service';
-import { Customer } from 'src/app/customerClass';
+import { AppointmentService } from 'src/app/core/services/AppointmentService/appointment.service';
+import { TypePrestationIdService } from 'src/app/core/services/Type_prestation/type-prestation-id.service';
+import { TypePrestationService } from 'src/app/core/services/Type_prestation/type-prestation.service';
 
 @Component({
   selector: 'app-appointment-modal',
@@ -13,54 +15,68 @@ import { Customer } from 'src/app/customerClass';
 })
 export class AppointmentModalComponent {
   public customers: Customers[] = [];
-  id: any;
-  data: any;
-  selectedCustomer = new Customer({
-    id: this.customerIdService.getSelectedCustomerId(),
-    firstname: '',
-    lastname: '',
-    phoneNumber: '',
-    email: '',
-    birthdate: '',
+  public latestAppointment: Appointment | undefined;
+
+  selectedTypePrestation = new Type_prestation({
+    id: this.typePrestationId.getSelectedTypePrestationId(),
+    description: '',
+    duration: 0,
+    price: 0,
+    title: '',
   });
 
   constructor(
-    private customerService: CustomerService,
     public matDialog: MatDialog,
-    public customerIdService: CustomerIdService
+    public typePrestationService: TypePrestationService,
+    public typePrestationId: TypePrestationIdService,
+    public appointmentService: AppointmentService
   ) {}
 
   ngOnInit() {
-    console.log('ID in modal:', this.customerIdService.getSelectedCustomerId());
-    this.getCustomer();
-
-    console.log(this.selectedCustomer.id);
+    const typeId = this.selectedTypePrestation.id;
+    console.log('ID de la presta in modal:', typeId);
+    this.typePrestationService
+      .findById(typeId)
+      .subscribe((type: Type_prestation) => {
+        this.selectedTypePrestation = type;
+        console.log(
+          'Titre de la prestation:',
+          this.selectedTypePrestation.title
+        );
+      });
+    this.getLastAppointment();
+  }
+  getTypePrestationId(typeId: number): void {
+    this.typePrestationService.findById(typeId);
   }
 
-  public getCustomer() {
-    this.customerService.findCustomerById(this.selectedCustomer.id).subscribe(
-      (res: Customers) => {
-        // Assurez-vous que les propriétés que vous souhaitez utiliser sont définies
-        this.selectedCustomer.firstname = res.firstname;
-        this.selectedCustomer.lastname = res.lastname;
-        this.selectedCustomer.phoneNumber = res.phoneNumber;
-        this.selectedCustomer.email = res.email;
-        this.selectedCustomer.birthdate = res.birthdate;
-
-        // Vous pouvez également mettre à jour d'autres propriétés si nécessaire
-        console.log(this.selectedCustomer.firstname);
-        console.log(this.selectedCustomer.lastname);
-      },
-      (error: HttpErrorResponse) => {
-        console.error(error);
-      }
-    );
+  getLastAppointment(): void {
+    this.appointmentService
+      .getLatestAppointment()
+      .subscribe((appointment: Appointment) => {
+        this.latestAppointment = appointment;
+        console.log('Dernier rendez-vous :', this.latestAppointment);
+      });
   }
+  public onValidation() {
+    let idAppointment: number = this.latestAppointment?.id ?? 0;
+    let idTypePrestation: number = this.selectedTypePrestation.id;
+    console.log(idAppointment);
+    console.log(idTypePrestation);
 
-  public onUpdateCustomer() {
-    this.customerService
-      .updateCustomer(this.selectedCustomer)
-      .subscribe((res) => {});
-    console.log('Customer updated : ' + this.selectedCustomer.firstname);
+    this.appointmentService
+      .assignPrestationToAppointment(idAppointment, idTypePrestation)
+      .subscribe(
+        (response) => {
+          console.log('Prestation attribuée avec succès :', response);
+          // Mettez à jour votre interface utilisateur ici si nécessaire
+          location.reload();
+        },
+        (error) => {
+          console.error("Erreur lors de l'attribution de prestation :", error);
+          // Gérer l'erreur ici (affichage d'un message d'erreur, etc.)
+          location.reload();
+        }
+      );
   }
 }
